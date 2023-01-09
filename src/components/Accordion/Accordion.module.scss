@@ -1,0 +1,69 @@
+.item {
+  outline: 1px dashed green;
+}
+
+.title {}
+
+.heading {
+  margin: 0;
+  pointer-events: none;
+  position: relative;
+  z-index: 10;
+  background-color: black;
+
+  button {
+    pointer-events: all;
+    outline: 1px dashed yellow;
+    appearance: none;
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+
+    display: grid;
+    grid-template-columns: 1fr min-content;
+    grid-template-areas:
+      "left  right";
+    }
+
+    div {
+      pointer-events: none;
+    }
+}
+
+.closer {
+  font-size: 1.25rem;
+  vertical-align: middle;
+  line-height: 14px;
+  transform: rotate(45deg);
+  transition: transform .3s;
+}
+
+.open {
+  .closer {
+    transform: rotate(0);
+  }
+}
+
+.section {
+  outline: 1px dotted red;
+  outline-offset: -2px;
+  transition: all .25s ease-in-out;
+  overflow: hidden;
+
+  p {
+    font-size: inherit;
+    margin: 0;
+  }
+
+  p + p {
+    margin-top: 5px;
+  }
+}
+
+.heading button,
+.section .contentWrapper {
+  box-sizing: border-box;
+  padding: .5rem 1rem;
+}

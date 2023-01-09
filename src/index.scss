@@ -1,0 +1,104 @@
+@mixin fontFamily {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+}
+
+:root {
+  @include fontFamily();
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 400;
+
+  --light: #e3e3e3;
+  --dark: #242424;
+  --highlight-dark: #767676;
+  --highlight-light: #858585;
+  --link: #646cff;
+  --link-dark: #747bff;
+  --field: #595959;
+
+  color-scheme: light dark;
+  color: var(--light);
+  background-color: var(--dark);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+html,
+body,
+.root {
+  height: 100%;
+}
+
+a {
+  font-weight: 500;
+  color: var(--link);
+  text-decoration: inherit;
+}
+
+a:hover {
+  color: var(--link-dark);
+}
+
+input,
+select,
+textarea {
+  @include fontFamily();
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--dark);
+    background-color: var(--light);
+  }
+
+  a:hover {
+    color: var(--link-dark);
+  }
+
+  button {
+    background-color: var(--dark);
+  }
+}
+
+// https://stackoverflow.com/a/67521109/633056
+.react-select__multi-value__label {
+  text-transform: capitalize;
+}
+
+.react-select-container {
+  .react-select__control {
+    background-color: var(--field);
+    border-color: var(--highlight-dark);
+    transition: none;
+
+    &:hover {
+      border-color: var(--highlight-light);
+    }
+  }
+
+  .react-select__menu {
+    background-color: var(--dark);
+    border: 1px solid var(--dark);
+  }
+
+  .react-select__option {
+    background-color: var(--dark);
+
+    &:hover {
+      background-color: var(--highlight-dark);
+    }
+  }
+
+  .react-select__indicator-separator {
+    background-color: var(--highlight-dark);
+  }
+
+  .react-select__placeholder,
+  .react-select__single-value {
+    color: var(--light);
+  }
+}
