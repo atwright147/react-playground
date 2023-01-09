@@ -58,8 +58,7 @@ export const Accordion = ({ id, title, items }: Props): JSX.Element => {
                 aria-expanded={isOpen}
                 aria-controls={`${id}-section--${index}`}
               >
-                <div className={styles.left}>{item.heading}</div>
-                <div className={classnames(styles.right, styles.closer)} aria-hidden="true">&times;</div>
+                {item.heading}
               </button>
             </h3>
 
