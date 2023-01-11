@@ -1,0 +1,72 @@
+$borderRadius: 5px;
+
+.field {
+  display: flex;
+  flex-direction: column-reverse;
+  max-width: 100%;
+}
+
+.group {
+  display: flex;
+  max-width: min-content;
+  border-radius: $borderRadius;
+
+  &:has(:focus-visible) {
+    box-shadow: 0 0 0 3px #2196F3;
+  }
+
+  &:has(.marker.left) {
+    .input {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+
+    .marker {
+      &.left {
+        border-top-left-radius: $borderRadius;
+        border-bottom-left-radius: $borderRadius;
+      }
+    }
+  }
+
+  &:has(.marker.right) {
+    .input {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+
+    .marker {
+      &.right {
+        border-top-right-radius: $borderRadius;
+        border-bottom-right-radius: $borderRadius;
+      }
+    }
+  }
+}
+
+.input {
+  outline: 0;
+  border-radius: $borderRadius;
+  width: auto;
+}
+
+.marker,
+.input {
+  border: 1px solid #ccc;
+  padding: 5px 10px;
+}
+
+.marker {
+  align-items: center;
+  display: flex;
+  width: min-content;
+  aspect-ratio: 1/1;
+
+  &.left {
+    border-right: 0;
+  }
+
+  &.right {
+    border-left: 0;
+  }
+}

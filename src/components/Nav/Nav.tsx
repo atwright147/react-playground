@@ -11,5 +11,6 @@ export const Nav = (): JSX.Element => (
     <hr />
     <NavLink className={styles.link} to="/components/accordion">Accordion</NavLink>
     <NavLink className={styles.link} to="/components/button">Button</NavLink>
+    <NavLink className={styles.link} to="/components/form">Form</NavLink>
   </nav>
 );

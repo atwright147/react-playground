@@ -9,6 +9,7 @@ import { Home } from './routes/Home/Home';
 import { DragAndDrop } from './routes/DragAndDrop/DragAndDrop';
 import { AccordionRoute } from './routes/AccordionRoute/AccordionRoute';
 import { ButtonsRoute } from './routes/ButtonsRoute/ButtonsRoute';
+import { FormRoute } from './routes/FormRoute/FormRoute';
 
 import 'normalize.css';
 import './index.scss';
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'components/button',
         element: <ButtonsRoute />,
+      },
+      {
+        path: 'components/form',
+        element: <FormRoute />,
       },
     ],
   },
