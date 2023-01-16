@@ -1,0 +1,15 @@
+.container {
+  width: min-content;
+}
+
+.indicator {
+  pointer-events: none;
+  transform: rotate(90deg);
+  transition: transform .3s;
+}
+
+.open {
+  .indicator {
+    transform: rotate(180deg);
+  }
+}

@@ -10,6 +10,7 @@ import { DragAndDrop } from './routes/DragAndDrop/DragAndDrop';
 import { AccordionRoute } from './routes/AccordionRoute/AccordionRoute';
 import { ButtonsRoute } from './routes/ButtonsRoute/ButtonsRoute';
 import { FormRoute } from './routes/FormRoute/FormRoute';
+import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
 
 import 'normalize.css';
 import './index.scss';
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'components/form',
         element: <FormRoute />,
+      },
+      {
+        path: 'components/popover',
+        element: <PopoverRoute />,
       },
     ],
   },

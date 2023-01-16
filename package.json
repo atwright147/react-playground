@@ -18,6 +18,8 @@
     "react-dom": "^18.2.0",
     "react-icons": "^4.7.1",
     "react-router-dom": "^6.6.1",
+    "react-use": "^17.4.0",
+    "react-use-click-away": "^1.0.10",
     "sass": "^1.57.1"
   },
   "devDependencies": {
