@@ -6,25 +6,22 @@ export const ButtonsRoute = (): JSX.Element => (
   <>
     <Button
       left={<FaBeer />}
-      middle="Cheers"
       right={<FaCocktail />}
       onClick={(event) => console.info('clicked', event)}
-    />
+    >Cheers</Button>
 
     <hr />
 
     <Button
       left={<FaBeer />}
-      middle="Cheers"
       onClick={(event) => console.info('clicked', event)}
-    />
+    >Cheers</Button>
 
     <hr />
 
     <Button
-      middle="Cheers"
       right={<FaCocktail />}
       onClick={(event) => console.info('clicked', event)}
-    />
+    >Cheers</Button>
   </>
 );
