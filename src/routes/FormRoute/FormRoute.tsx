@@ -1,6 +1,7 @@
 import { FaBeer, FaCocktail } from 'react-icons/fa';
 
 import { Input } from '../../components/fields/Input/Input';
+import { Textarea } from '../../components/fields/Textarea/Textarea';
 
 export const FormRoute = (): JSX.Element => (
   <>
@@ -31,5 +32,9 @@ export const FormRoute = (): JSX.Element => (
       left={<FaBeer />}
       right={<FaCocktail />}
     />
+
+    <hr />
+
+    <Textarea label="Textarea" handle={<div></div>}/>
   </>
 );
