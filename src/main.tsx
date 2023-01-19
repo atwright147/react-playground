@@ -9,7 +9,7 @@ import { Home } from './routes/Home/Home';
 import { DragAndDrop } from './routes/DragAndDrop/DragAndDrop';
 import { AccordionRoute } from './routes/AccordionRoute/AccordionRoute';
 import { ButtonsRoute } from './routes/ButtonsRoute/ButtonsRoute';
-import { FormRoute } from './routes/FormRoute/FormRoute';
+import { FieldsRoute } from './routes/FieldsRoute/FieldsRoute';
 import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
 
 import 'normalize.css';
@@ -42,8 +42,8 @@ const router = createBrowserRouter([
         element: <ButtonsRoute />,
       },
       {
-        path: 'components/form',
-        element: <FormRoute />,
+        path: 'components/fields',
+        element: <FieldsRoute />,
       },
       {
         path: 'components/popover',

@@ -3,7 +3,7 @@ import { FaBeer, FaCocktail } from 'react-icons/fa';
 import { Input } from '../../components/fields/Input/Input';
 import { Textarea } from '../../components/fields/Textarea/Textarea';
 
-export const FormRoute = (): JSX.Element => (
+export const FieldsRoute = (): JSX.Element => (
   <>
     <Input
       label="My Field"
