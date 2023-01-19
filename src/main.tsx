@@ -11,6 +11,7 @@ import { AccordionRoute } from './routes/AccordionRoute/AccordionRoute';
 import { ButtonsRoute } from './routes/ButtonsRoute/ButtonsRoute';
 import { FieldsRoute } from './routes/FieldsRoute/FieldsRoute';
 import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
+import { FormRoute } from './routes/FormRoute/FormRoute';
 
 import 'normalize.css';
 import './index.scss';
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
       {
         path: 'components/fields',
         element: <FieldsRoute />,
+      },
+      {
+        path: 'components/form',
+        element: <FormRoute />,
       },
       {
         path: 'components/popover',
