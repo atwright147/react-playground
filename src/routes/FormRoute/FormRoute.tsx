@@ -1,9 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Controller, SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { DevTool } from "@hookform/devtools";
+
+import * as z from 'zod';
+
 import { Button } from '../../components/Button/Button';
 import { Fieldset } from '../../components/fields/Fieldset/Fieldset';
 import { Input } from '../../components/fields/Input/Input';
 import { Textarea } from '../../components/fields/Textarea/Textarea';
+
+const schema = z.object({
+  title: z.string().min(3, { message: 'Required' }),
+  description: z.number().min(10),
+});
 
 interface TestFieldArray {
   col1: string,
@@ -32,8 +42,10 @@ const defaultValues: FormData = {
 export const FormRoute = (): JSX.Element => {
   const [formData, setFormData] = useState<FormData>({} as FormData);
 
-  const { control, getValues, handleSubmit, register, reset } = useForm<FormData>({
+  const { control, getValues, handleSubmit, register, reset, formState, formState: { errors } } = useForm<FormData>({
     defaultValues,
+    resolver: zodResolver(schema),
+    mode: 'all',
   });
   const { fields, append, remove } = useFieldArray({
     control,
@@ -124,6 +136,7 @@ export const FormRoute = (): JSX.Element => {
       <hr />
 
       <pre>{JSON.stringify(formData, null, 2)}</pre>
+      <DevTool control={control} />
     </>
   );
 };
