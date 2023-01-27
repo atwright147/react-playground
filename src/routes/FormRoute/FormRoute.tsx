@@ -11,8 +11,8 @@ import { Input } from '../../components/fields/Input/Input';
 import { Textarea } from '../../components/fields/Textarea/Textarea';
 
 const schema = z.object({
-  title: z.string().min(3, { message: 'Required' }),
-  description: z.number().min(10),
+  title: z.string().min(3, { message: 'Title is required' }),
+  description: z.string().min(3, { message: 'Description is required' }),
 });
 
 interface TestFieldArray {
