@@ -72,12 +72,14 @@ export const FormRoute = (): JSX.Element => {
         <Controller
           control={control}
           name="title"
-          render={({ field: { onChange, value } }) => (
+          render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
             <Input
               id="title"
+              name="title"
               label="Title"
               value={value}
               onChange={onChange}
+              errors={error}
             />
           )}
           defaultValue=""
