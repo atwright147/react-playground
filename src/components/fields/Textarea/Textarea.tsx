@@ -10,7 +10,7 @@ export interface Props extends ComponentPropsWithRef<'textarea'> {
 }
 
 export const Textarea: FC<Props> = forwardRef<HTMLTextAreaElement, Props>(
-  ({ label, handle, className, onChange: _onChange, ...props }, ref: Ref<HTMLTextAreaElement>): JSX.Element => {
+  ({ label, className, onChange: _onChange, ...props }, ref: Ref<HTMLTextAreaElement>): JSX.Element => {
     const [text, setText] = useState<string>('');
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       setText(event.target.value);
