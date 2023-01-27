@@ -1,15 +1,18 @@
 import classnames from 'classnames';
 import { ChangeEvent, ComponentPropsWithRef, FC, forwardRef, ReactNode, Ref, useState } from 'react';
 import styles from './Textarea.module.scss';
+import { Messages } from '../Messages/Messages';
 
 // https://stackoverflow.com/a/66810748/633056
 
-export interface Props extends ComponentPropsWithRef<'textarea'> {
+export interface Props extends Omit<ComponentPropsWithRef<'textarea'>, 'name'> {
   label: string,
+  name: string,
+  errors?: any,
 }
 
 export const Textarea: FC<Props> = forwardRef<HTMLTextAreaElement, Props>(
-  ({ label, className, onChange: _onChange, ...props }, ref: Ref<HTMLTextAreaElement>): JSX.Element => {
+  ({ label, name, className, onChange: _onChange, errors, ...props }, ref: Ref<HTMLTextAreaElement>): JSX.Element => {
     const [text, setText] = useState<string>('');
     const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
       setText(event.target.value);
@@ -28,6 +31,7 @@ export const Textarea: FC<Props> = forwardRef<HTMLTextAreaElement, Props>(
             {...props}
           />
         </div>
+        <Messages messages={errors} name={name} />
       </div>
     )
   }

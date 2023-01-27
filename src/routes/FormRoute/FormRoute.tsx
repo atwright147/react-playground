@@ -88,12 +88,14 @@ export const FormRoute = (): JSX.Element => {
         <Controller
           control={control}
           name="description"
-          render={({ field: { onChange, value } }) => (
+          render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
             <Textarea
               id="description"
+              name="description"
               label="Description"
               value={value}
               onChange={onChange}
+              errors={error}
             />
           )}
           defaultValue=""
