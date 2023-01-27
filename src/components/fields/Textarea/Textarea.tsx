@@ -6,7 +6,6 @@ import styles from './Textarea.module.scss';
 
 export interface Props extends ComponentPropsWithRef<'textarea'> {
   label: string,
-  handle?: ReactNode,
 }
 
 export const Textarea: FC<Props> = forwardRef<HTMLTextAreaElement, Props>(
