@@ -14,6 +14,7 @@ export interface Props extends ComponentPropsWithRef<'input'> {
 export const Input: FC<Props> = forwardRef<HTMLInputElement, Props>(
   ({ label, left, middle, right, className, ...props }, ref: Ref<HTMLInputElement>): JSX.Element => (
     <div className={styles.field}>
+      <label htmlFor={props.id}>{label}</label>
       <div className={styles.group}>
         {left && <div className={classnames(styles.marker, styles.left)}>{left}</div>}
         <input
@@ -23,7 +24,6 @@ export const Input: FC<Props> = forwardRef<HTMLInputElement, Props>(
         />
         {right && <div className={classnames(styles.marker, styles.right)}>{right}</div>}
       </div>
-      <label htmlFor={props.id}>{label}</label>
     </div>
   )
 );

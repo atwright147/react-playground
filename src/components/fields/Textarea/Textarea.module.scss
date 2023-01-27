@@ -2,7 +2,8 @@ $borderRadius: 5px;
 
 .field {
   display: flex;
-  flex-direction: column-reverse;
+  flex-direction: column;
+  gap: 5px;
   max-width: 100%;
 }
 .input {

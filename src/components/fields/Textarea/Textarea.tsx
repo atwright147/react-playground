@@ -19,6 +19,7 @@ export const Textarea: FC<Props> = forwardRef<HTMLTextAreaElement, Props>(
 
     return (
       <div className={styles.field}>
+        <label htmlFor={props.id}>{label}</label>
         <div className={styles.growWrap}>
           <div aria-hidden="true" className={styles.grower}>{text}</div>
           <textarea
@@ -28,7 +29,6 @@ export const Textarea: FC<Props> = forwardRef<HTMLTextAreaElement, Props>(
             {...props}
           />
         </div>
-        <label htmlFor={props.id}>{label}</label>
       </div>
     )
   }
