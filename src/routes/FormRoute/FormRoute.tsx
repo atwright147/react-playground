@@ -9,6 +9,7 @@ import { Button } from '../../components/Button/Button';
 import { Fieldset } from '../../components/fields/Fieldset/Fieldset';
 import { Input } from '../../components/fields/Input/Input';
 import { Textarea } from '../../components/fields/Textarea/Textarea';
+import { Checkbox } from '../../components/fields/Checkbox/Checkbox';
 
 const schema = z.object({
   title: z.string().min(3, { message: 'Title is required' }),
@@ -125,6 +126,8 @@ export const FormRoute = (): JSX.Element => {
               }}>Delete</Button>
           </Fieldset>
         ))}
+
+        <Checkbox label="Checkbox" id="checkbox" name="checkbox" />
 
         <button
           type="button"
