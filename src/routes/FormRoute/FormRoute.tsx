@@ -104,17 +104,17 @@ export const FormRoute = (): JSX.Element => {
         {fields.map((item, index) => (
           <Fieldset legend={`Field Array ${index + 1}`} key={item.id}>
             <Controller
-                render={({ field }) => <Input label="Column 1" {...field} />}
+                render={({ field }) => <Input label="Column 1" id={`test.${index}.col1`} {...field} />}
                 name={`test.${index}.col1`}
                 control={control}
               />
               <Controller
-                render={({ field }) => <Input label="Column 2" {...field} />}
+                render={({ field }) => <Input label="Column 2" id={`test.${index}.col2`} {...field} />}
                 name={`test.${index}.col2`}
                 control={control}
               />
               <Controller
-                render={({ field }) => <Input label="Column 3" {...field} />}
+                render={({ field }) => <Input label="Column 3" id={`test.${index}.col3`} {...field} />}
                 name={`test.${index}.col3`}
                 control={control}
               />

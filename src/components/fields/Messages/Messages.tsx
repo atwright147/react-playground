@@ -1,14 +1,13 @@
 import { FC } from 'react';
-import { FieldErrors } from 'react-hook-form';
 import styles from './Messages.module.scss';
 
 interface Props {
   messages: any,
-  name: string,
+  id: string,
 }
 
-export const Messages: FC<Props> = ({ messages, name }): JSX.Element | null => (
-  <div className={styles.container}>
-    <p className={styles.message} key={messages?.message}>{messages?.message}</p>
+export const Messages: FC<Props> = ({ messages, id }): JSX.Element | null => (
+  <div className={styles.container} id={id}>
+    {messages?.message && <p className={styles.message} key={messages?.message}>{messages?.message}</p>}
   </div>
 );
