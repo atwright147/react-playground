@@ -42,10 +42,11 @@ export const ItemCard: FC<ItemCardProps> = ({ id, name }): JSX.Element => {
 }
 
 const INITIAL_STOCK: ItemCardProps[] = [
-  { id: 1, name: 'dog' },
-  { id: 2, name: 'cat' },
-  { id: 3, name: 'fish' },
-  { id: 4, name: 'hamster' },
+  { id: 1, name: 'Item 1' },
+  { id: 2, name: 'Item 2' },
+  { id: 3, name: 'Item 3' },
+  { id: 4, name: 'Item 4' },
+  { id: 5, name: 'Item 5' },
 ]
 
 export const Basket = (): JSX.Element => {
@@ -69,10 +70,14 @@ export const Basket = (): JSX.Element => {
 
   return (
     <>
+      <h2>Stock</h2>
       <div className={styles.stock}>
         {stock.map((item) => <ItemCard draggable key={item.id} id={item.id} name={item.name} />)}
       </div>
 
+      <hr />
+
+      <h2>Basket</h2>
       <div className={styles.basket} ref={dropRef}>
         {basket.map((item) => <ItemCard key={item.id} id={item.id} name={item.name} />)}
         {isOver && <div>Drop Here!</div>}
