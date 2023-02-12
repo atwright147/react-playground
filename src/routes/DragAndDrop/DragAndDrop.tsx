@@ -75,8 +75,6 @@ export const Basket = (): JSX.Element => {
         {stock.map((item) => <ItemCard draggable key={item.id} id={item.id} name={item.name} />)}
       </div>
 
-      <hr />
-
       <h2>Basket</h2>
       <div className={styles.basket} ref={dropRef}>
         {basket.map((item) => <ItemCard key={item.id} id={item.id} name={item.name} />)}
