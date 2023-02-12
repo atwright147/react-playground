@@ -5,27 +5,27 @@ import { FC, useState } from 'react';
 import styles from './DragAndDrop.module.scss';
 import classnames from 'classnames';
 
-interface Pet {
+interface Item {
   id: number,
   name: string,
 }
 
-interface PetCardProps extends Pet {
+interface ItemCardProps extends Item {
   draggable?: boolean,
 }
 
 // custom type guard
 // https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
-const isPet = (pet: any): pet is Pet => {
-  return !!Object.values(pet).length &&
-    typeof pet.id === 'number' &&
-    typeof pet.name === 'string';
+const isItem = (item: any): item is Item => {
+  return !!Object.values(item).length &&
+    typeof item.id === 'number' &&
+    typeof item.name === 'string';
 }
 
 // draggable
-export const PetCard: FC<PetCardProps> = ({ id, name }): JSX.Element => {
+export const ItemCard: FC<ItemCardProps> = ({ id, name }): JSX.Element => {
   const [{ isDragging }, dragRef] = useDrag({
-    type: 'pet',
+    type: 'item',
     item: { id, name },
     collect: (monitor) => ({
       isDragging: monitor.isDragging(),
@@ -33,7 +33,7 @@ export const PetCard: FC<PetCardProps> = ({ id, name }): JSX.Element => {
   });
 
   return (
-    <div className={classnames(styles.petCard, {
+    <div className={classnames(styles.itemCard, {
       [styles.isDragging]: isDragging,
     })} ref={dragRef}>
       {name}
@@ -41,7 +41,7 @@ export const PetCard: FC<PetCardProps> = ({ id, name }): JSX.Element => {
   )
 }
 
-const PETS: PetCardProps[] = [
+const INITIAL_STOCK: ItemCardProps[] = [
   { id: 1, name: 'dog' },
   { id: 2, name: 'cat' },
   { id: 3, name: 'fish' },
@@ -49,19 +49,18 @@ const PETS: PetCardProps[] = [
 ]
 
 export const Basket = (): JSX.Element => {
-  const [allPets, setAllPets] = useState<Pet[]>([...PETS]);
-  const [filteredPets, setFilteredPets] = useState<Pet[]>([...PETS]);
-  const [basket, setBasket] = useState<Pet[]>([]);
+  const [allItems, setAllItems] = useState<Item[]>([...INITIAL_STOCK]);
+  const [stock, setStock] = useState<Item[]>([...INITIAL_STOCK]);
+  const [basket, setBasket] = useState<Item[]>([]);
   const [{ isOver }, dropRef] = useDrop({
-    accept: 'pet',
-    drop: (item: Pet) => {
-      const petToMove = allPets.find(pet => pet.id === item.id);
+    accept: 'item',
+    drop: (subject: Item) => {
+      const itemToMove = allItems.find(item => item.id === subject.id);
 
-      if (isPet(petToMove)) {
-        setBasket(prev => ([ ...prev, petToMove ]));
-        setFilteredPets(prev => prev.filter(pet => pet.id !== item.id));
+      if (isItem(itemToMove)) {
+        setBasket(prevState => ([ ...prevState, itemToMove ]));
+        setStock(prevState => prevState.filter(prev => prev.id !== subject.id));
       }
-      // setBasket((basket) => !basket.includes(item) ? [...basket, item] : basket);
     },
     collect: (monitor) => ({
       isOver: monitor.isOver(),
@@ -70,22 +69,14 @@ export const Basket = (): JSX.Element => {
 
   return (
     <>
-      <div className={styles.pets}>
-        {
-          filteredPets
-            .map((pet) => <PetCard draggable key={pet.id} id={pet.id} name={pet.name} />)
-        }
+      <div className={styles.stock}>
+        {stock.map((item) => <ItemCard draggable key={item.id} id={item.id} name={item.name} />)}
       </div>
 
       <div className={styles.basket} ref={dropRef}>
-        {basket.map((pet) => <PetCard key={pet.id} id={pet.id} name={pet.name} />)}
+        {basket.map((item) => <ItemCard key={item.id} id={item.id} name={item.name} />)}
         {isOver && <div>Drop Here!</div>}
       </div>
-
-      <h1>Filtered Pets</h1>
-      <pre>{JSON.stringify(filteredPets, null, 2)}</pre>
-      <h1>Basket</h1>
-      <pre>{JSON.stringify(basket, null, 2)}</pre>
     </>
   )
 }
