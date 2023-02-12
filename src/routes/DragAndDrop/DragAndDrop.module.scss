@@ -4,8 +4,9 @@
   align-items: center;
   aspect-ratio: 1;
   width: 100px;
-  border: 2px solid #ccc;
+  border: 2px solid white;
   box-sizing: border-box;
+  cursor: grab;
 }
 .stock,
 .basket {
@@ -18,4 +19,5 @@
 
 .isDragging {
   border-color: aquamarine;
+  cursor: grabbing;
 }
