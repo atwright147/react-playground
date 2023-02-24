@@ -20,11 +20,11 @@ export const Checkbox: FC<Props> = forwardRef<HTMLInputElement, Props>(
     const describedby = `${id}--errors`;
 
     return (
-      <div className={styles.field}>
+      <div className={classnames(styles.field, className)}>
         <label htmlFor={id} className={styles.label}>
           <input
             id={id}
-            className={classnames(styles.input, className)}
+            className={styles.input}
             type="checkbox"
             aria-describedby={describedby}
             ref={ref}
