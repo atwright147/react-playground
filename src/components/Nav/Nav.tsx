@@ -9,6 +9,7 @@ export const Nav = (): JSX.Element => (
     <NavLink className={styles.link} to="/articles">Articles</NavLink>
     <NavLink className={styles.link} to="/issues">Issues</NavLink>
     <NavLink className={styles.link} to="/todos">Todos</NavLink>
+    <NavLink className={styles.link} to="/starwars">Star Wars</NavLink>
     <hr />
     <NavLink className={styles.link} to="/components/accordion">Accordion</NavLink>
     <NavLink className={styles.link} to="/components/button">Button</NavLink>

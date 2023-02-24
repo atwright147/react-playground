@@ -16,6 +16,7 @@ import { TodosRoute } from './routes/Todos/TotosRoute';
 
 import 'normalize.css';
 import './index.scss';
+import { StarWarsRoute } from './routes/StarWarsRoute/StarWarsRoute';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: 'todos',
         element: <TodosRoute />,
+      },
+      {
+        path: 'starwars',
+        element: <StarWarsRoute />,
       },
       {
         path: 'components/accordion',
