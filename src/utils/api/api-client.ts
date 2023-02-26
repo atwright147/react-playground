@@ -8,10 +8,12 @@ export const client = ky.create({
       () => useSpinnerStore.getState().increment(),
     ],
     beforeError: [
-      () => useSpinnerStore.getState().decrement() as any,
+      // @ts-ignore
+      () => useSpinnerStore.getState().decrement(),
     ],
     afterResponse: [
-      () => useSpinnerStore.getState().decrement() as any,
+      // @ts-ignore
+      () => useSpinnerStore.getState().decrement(),
     ],
   }
 });
