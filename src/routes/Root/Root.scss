@@ -28,7 +28,7 @@ body {
   display: grid;
   height: 100%;
 
-  grid-template-columns: 100px 1fr;
+  grid-template-columns: auto 1fr;
   grid-template-rows: auto 1fr auto;  /* 1fr causes the middle row to fill remaining space */
   grid-template-areas:
     "header  header"
