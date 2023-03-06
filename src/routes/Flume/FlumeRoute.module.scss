@@ -1,0 +1,21 @@
+.wrapper {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-columns: 1fr auto;
+  grid-template-areas:
+    "header      header"
+    "nodeEditor  preview";
+  height: 100%;
+}
+
+.header {
+  grid-area: header;
+}
+
+.nodeEditor {
+  grid-area: nodeEditor;
+}
+
+.preview {
+  grid-area: preview;
+}

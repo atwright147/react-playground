@@ -13,10 +13,11 @@ import { FieldsRoute } from './routes/FieldsRoute/FieldsRoute';
 import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
 import { FormRoute } from './routes/FormRoute/FormRoute';
 import { TodosRoute } from './routes/Todos/TotosRoute';
+import { StarWarsRoute } from './routes/StarWarsRoute/StarWarsRoute';
+import { FlumeRoute } from './routes/Flume/FlumeRoute';
 
 import 'normalize.css';
 import './index.scss';
-import { StarWarsRoute } from './routes/StarWarsRoute/StarWarsRoute';
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ const router = createBrowserRouter([
       {
         path: 'starwars',
         element: <StarWarsRoute />,
+      },
+      {
+        path: 'flume',
+        element: <FlumeRoute />,
       },
       {
         path: 'components/accordion',
