@@ -1,0 +1,52 @@
+diff --git a/node_modules/flume/dist/index.es.js b/node_modules/flume/dist/index.es.js
+index bbd3262..2f0a9b0 100644
+--- a/node_modules/flume/dist/index.es.js
++++ b/node_modules/flume/dist/index.es.js
+@@ -7751,15 +7751,17 @@ var NodeEditor = function NodeEditor(_ref, ref) {
+     stage.current = document.getElementById("" + STAGE_ID + editorId).getBoundingClientRect();
+   };
+
++  var initialRecalculateConnectionsDoneRef = React.useRef(false);
++
+   React.useLayoutEffect(function () {
+-    if (shouldRecalculateConnections) {
++    if (!initialRecalculateConnectionsDoneRef.current) {
++      initialRecalculateConnectionsDoneRef.current = true;
+       recalculateConnections();
+-      setShouldRecalculateConnections(false);
+     }
+-  }, [shouldRecalculateConnections, recalculateConnections]);
++  }, [recalculateConnections]);
+
+   var triggerRecalculation = function triggerRecalculation() {
+-    setShouldRecalculateConnections(true);
++    recalculateConnections();
+   };
+
+   React.useImperativeHandle(ref, function () {
+diff --git a/node_modules/flume/dist/index.js b/node_modules/flume/dist/index.js
+index 47d32c4..843f50d 100644
+--- a/node_modules/flume/dist/index.js
++++ b/node_modules/flume/dist/index.js
+@@ -7758,15 +7758,17 @@ exports.NodeEditor = function NodeEditor(_ref, ref) {
+     stage.current = document.getElementById("" + STAGE_ID + editorId).getBoundingClientRect();
+   };
+
++  var initialRecalculateConnectionsDoneRef = React__default.useRef(false);
++
+   React__default.useLayoutEffect(function () {
+-    if (shouldRecalculateConnections) {
++    if (!initialRecalculateConnectionsDoneRef.current) {
++      initialRecalculateConnectionsDoneRef.current = true;
+       recalculateConnections();
+-      setShouldRecalculateConnections(false);
+     }
+-  }, [shouldRecalculateConnections, recalculateConnections]);
++  }, [recalculateConnections]);
+
+   var triggerRecalculation = function triggerRecalculation() {
+-    setShouldRecalculateConnections(true);
++    recalculateConnections();
+   };
+
+   React__default.useImperativeHandle(ref, function () {
