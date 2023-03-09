@@ -139,6 +139,15 @@ config
     outputs: ports => [ports.number({ name: "result" })]
   })
   .addNodeType({
+    type: "numberToString",
+    label: "Number to String",
+    initialWidth: 150,
+    inputs: ports => [
+      ports.number({ name: "number" }),
+    ],
+    outputs: ports => [ports.string({ name: "result" })]
+  })
+  .addNodeType({
     type: "multiplyNumbers",
     label: "Multiply Numbers",
     initialWidth: 150,

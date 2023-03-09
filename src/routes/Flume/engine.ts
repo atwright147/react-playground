@@ -35,6 +35,8 @@ const engine = new RootEngine(
         return { result: inputValues.num1 - inputValues.num2 };
       case "multiplyNumbers":
         return { result: inputValues.num1 * inputValues.num2 };
+      case "numberToString":
+        return { result: String(inputValues.number) };
       case "divideNumbers":
         return { result: inputValues.num1 / inputValues.num2 };
       default:
