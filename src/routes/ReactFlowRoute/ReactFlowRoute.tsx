@@ -5,10 +5,17 @@ import ReactFlow, {
   applyNodeChanges,
   applyEdgeChanges,
   addEdge,
+  ReactFlowInstance,
+  OnNodesChange,
+  OnEdgesChange,
+  OnConnect,
+  Edge,
+  Node,
 } from 'reactflow';
-import 'reactflow/dist/style.css';
-import { TextUpdaterNode } from './nodes/text-updater.omponent';
+import { Button } from '../../components/Button/Button';
+import { TextUpdaterNode } from './nodes/text-updater.component';
 
+import 'reactflow/dist/style.css';
 import styles from './ReactFlowRoute.module.scss';
 
 const nodeTypes = { textUpdater: TextUpdaterNode };
@@ -25,39 +32,65 @@ const initialNodes = [
     data: { label: 'World' },
     position: { x: 100, y: 100 },
   },
-  { id: 'node-1', type: 'textUpdater', position: { x: 0, y: 0 }, data: { value: 123 } },
+  {
+    id: 'node-1',
+    type: 'textUpdater',
+    position: { x: 0, y: 200 },
+    data: { value: 123 }
+  },
 ];
 
 const initialEdges = [];
 
 export const ReactFlowRoute = (): JSX.Element => {
-  const [nodes, setNodes] = useState(initialNodes);
-  const [edges, setEdges] = useState(initialEdges);
+  const [nodes, setNodes] = useState<Node[]>(initialNodes);
+  const [edges, setEdges] = useState<Edge[]>(initialEdges);
+  const [rfInstance, setRfInstance] = useState<ReactFlowInstance>();
 
-  const onNodesChange = useCallback(
+  const onNodesChange: OnNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    []
-  );
-  const onEdgesChange = useCallback(
-    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    []
+    [setNodes]
   );
 
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), []);
+  const onEdgesChange: OnEdgesChange = useCallback(
+    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
+    [setEdges]
+  );
+
+  const onConnect: OnConnect = useCallback(
+    (connection) => setEdges((eds) => addEdge(connection, eds)),
+    [setEdges]
+  );
+
+  const onSave = useCallback(() => {
+    if (rfInstance) {
+      const flow = rfInstance.toObject();
+      console.group('Saved Data');
+      console.info(JSON.stringify(flow));
+      console.groupEnd();
+    }
+  }, [rfInstance]);
 
   return (
-    <div style={{ height: '100%' }}>
-      <ReactFlow
-        nodes={nodes}
-        onNodesChange={onNodesChange}
-        edges={edges}
-        onEdgesChange={onEdgesChange}
-        onConnect={onConnect}
-        nodeTypes={nodeTypes}
-      >
-        <Background />
-        <Controls />
-      </ReactFlow>
+    <div className={styles.container}>
+      <div className={styles.flow}>
+        <ReactFlow
+          nodes={nodes}
+          onNodesChange={onNodesChange}
+          edges={edges}
+          onEdgesChange={onEdgesChange}
+          onConnect={onConnect}
+          nodeTypes={nodeTypes}
+          onInit={setRfInstance}
+        >
+          <Background />
+          <Controls />
+        </ReactFlow>
+      </div>
+
+      <div className={styles.preview}>
+        <Button onClick={onSave}>Save</Button>
+      </div>
     </div>
   );
 };

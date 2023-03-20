@@ -1,4 +1,10 @@
 .container {
+  display: grid;
+  grid-template-columns: auto 400px;
+}
+
+.container,
+.flow {
   height: 100%;
   width: 100%;
 }
