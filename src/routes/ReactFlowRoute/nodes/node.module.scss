@@ -1,10 +1,46 @@
+.heading {
+  font-size: .8rem;
+  margin: 0;
+  padding: .25rem;
+  margin-bottom: .25rem;
+  text-align: center;
+  border-bottom: 1px solid black;
+}
+
 .node {
-  padding: 1rem;
   background-color: white;
   color: black;
+  padding-bottom: .25rem;
+  border-radius: .20rem;
+
+  :global(.react-flow__handle) {
+    position: static;
+  }
+
+  :global(.react-flow__handle) {
+    top: auto;
+    transform: none;
+  }
 }
 
 .field {
   display: flex;
   flex-direction: column;
+}
+
+.handles {
+  display: flex;
+  flex-direction: column;
+  // outline: 1px solid red;
+}
+
+.handle {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: .25rem;
+
+  :global(.react-flow__handle) {
+    margin-right: -4px;
+  }
 }

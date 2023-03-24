@@ -16,13 +16,47 @@ import ReactFlow, {
 } from 'reactflow';
 import { Button } from '../../components/Button/Button';
 import { TextUpdaterNode } from './nodes/text-updater.component';
+import { SourceNode } from './nodes/source.component';
 
 import 'reactflow/dist/style.css';
 import styles from './ReactFlowRoute.module.scss';
 
-const nodeTypes = { textUpdater: TextUpdaterNode };
+const nodeTypes = {
+  textUpdater: TextUpdaterNode,
+  source: SourceNode,
+};
 
 const initialNodes = [
+  {
+    id: 'source',
+    type: 'source',
+    position: { x: 0, y: 200 },
+    data: {
+      minWidth: 250,
+      handles: [
+        {
+          id: '1',
+          label: 'top',
+        },
+        {
+          id: '2',
+          label: 'middle',
+        },
+        {
+          id: '3',
+          label: 'bottom',
+        },
+        {
+          id: '4',
+          label: 'bottom2',
+        },
+        {
+          id: '5',
+          label: 'Bottom3',
+        },
+      ],
+    }
+  },
   {
     id: '1',
     data: { label: 'Hello' },
@@ -37,7 +71,7 @@ const initialNodes = [
   {
     id: 'node-1',
     type: 'textUpdater',
-    position: { x: 0, y: 200 },
+    position: { x: 350, y: 200 },
     data: { value: 123 }
   },
 ];
