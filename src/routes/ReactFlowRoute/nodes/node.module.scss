@@ -12,14 +12,14 @@
   color: black;
   padding-bottom: .25rem;
   border-radius: .20rem;
+  height: 100%;
+  box-sizing: border-box;
 
   :global(.react-flow__handle) {
     position: static;
-  }
-
-  :global(.react-flow__handle) {
     top: auto;
     transform: none;
+    margin-right: -4px;
   }
 }
 
@@ -31,16 +31,11 @@
 .handles {
   display: flex;
   flex-direction: column;
-  // outline: 1px solid red;
 }
 
-.handle {
+.handleWithLabel {
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: .25rem;
-
-  :global(.react-flow__handle) {
-    margin-right: -4px;
-  }
 }

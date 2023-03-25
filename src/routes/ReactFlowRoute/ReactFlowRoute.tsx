@@ -13,6 +13,7 @@ import ReactFlow, {
   ReactFlowInstance,
   ReactFlowProvider,
   useReactFlow,
+  HandleProps,
 } from 'reactflow';
 import { Button } from '../../components/Button/Button';
 import { TextUpdaterNode } from './nodes/text-updater.component';
@@ -21,22 +22,35 @@ import { SourceNode } from './nodes/source.component';
 import 'reactflow/dist/style.css';
 import styles from './ReactFlowRoute.module.scss';
 
+interface HandleConfig extends Partial<HandleProps> {
+  label: string,
+}
+
+interface Data {
+  label?: string,
+  handles?: HandleConfig[]
+  minWidth?: number,
+  resizable?: boolean,
+}
+
 const nodeTypes = {
   textUpdater: TextUpdaterNode,
   source: SourceNode,
 };
 
-const initialNodes = [
+const initialNodes: Node<Data>[] = [
   {
     id: 'source',
     type: 'source',
     position: { x: 0, y: 200 },
     data: {
       minWidth: 250,
+      resizable: true,
       handles: [
         {
           id: '1',
           label: 'top',
+          type: 'source',
         },
         {
           id: '2',
