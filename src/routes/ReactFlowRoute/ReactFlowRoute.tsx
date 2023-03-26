@@ -28,9 +28,11 @@ interface HandleConfig extends Partial<HandleProps> {
 
 interface Data {
   label?: string,
+  headerColor?: string,
   handles?: HandleConfig[]
   minWidth?: number,
   resizable?: boolean,
+  value?: unknown,
 }
 
 const nodeTypes = {
@@ -42,31 +44,37 @@ const initialNodes: Node<Data>[] = [
   {
     id: 'source',
     type: 'source',
-    position: { x: 0, y: 200 },
+    position: { x: 50, y: 200 },
     data: {
       minWidth: 250,
-      resizable: true,
+      resizable: false,
+      label: 'Wibble',
+      headerColor: 'green',
       handles: [
         {
           id: '1',
           label: 'top',
-          type: 'source',
+          type: 'target',
         },
         {
           id: '2',
           label: 'middle',
+          type: 'source',
         },
         {
           id: '3',
           label: 'bottom',
+          type: 'source',
         },
         {
           id: '4',
           label: 'bottom2',
+          type: 'source',
         },
         {
           id: '5',
           label: 'Bottom3',
+          type: 'source',
         },
       ],
     }

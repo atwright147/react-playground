@@ -1,17 +1,29 @@
+$borderRadius: .20rem;
+
+.header {
+  background-color: white;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+}
+
+.body {
+  background-color: white;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+  padding: 5px 0;
+}
+
 .heading {
   font-size: .8rem;
   margin: 0;
   padding: .25rem;
-  margin-bottom: .25rem;
   text-align: center;
-  border-bottom: 1px solid #bbb;
 }
 
 .node {
-  background-color: white;
+  // background-color: white;
   color: black;
   padding-bottom: .25rem;
-  border-radius: .20rem;
   height: 100%;
   box-sizing: border-box;
 
@@ -19,7 +31,6 @@
     position: static;
     top: auto;
     transform: none;
-    margin-right: -4px;
   }
 }
 
@@ -36,6 +47,22 @@
 .handleWithLabel {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
   gap: .25rem;
+}
+
+.source {
+  :global(.react-flow__handle) {
+    margin-right: -4px;
+  }
+
+  justify-content: flex-end;
+}
+
+.target {
+  :global(.react-flow__handle) {
+    margin-left: -4px;
+  }
+
+  flex-direction: row-reverse;
+  justify-content: flex-end;
 }
