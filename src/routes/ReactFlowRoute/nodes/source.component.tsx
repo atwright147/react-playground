@@ -9,7 +9,7 @@ interface CustomHandleProps extends HandleProps {
   label?: string,
 }
 
-const CustomHandle: FC<CustomHandleProps> = ({ id, label, type }): JSX.Element => {
+const CustomHandle: FC<CustomHandleProps> = ({ id, label, type, position }): JSX.Element => {
 
   return (
     <div className={classnames(styles.handleWithLabel, {
@@ -19,7 +19,7 @@ const CustomHandle: FC<CustomHandleProps> = ({ id, label, type }): JSX.Element =
       <div className={styles.handleLabel}>{label}</div>
       <Handle
         type={type}
-        position={Position.Right}
+        position={position}
         className={styles.handleSource}
         id={id}
       />
@@ -50,7 +50,7 @@ export const SourceNode = ({ data }) => {
                 label={handle.label}
                 id={handle.id}
                 type={handle.type}
-                position={Position.Right}
+                position={handle.type === 'source' ? Position.Right : Position.Left}
               />
             ))}
           </div>
