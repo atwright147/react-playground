@@ -1,26 +1,42 @@
-import { useCallback } from 'react';
-import { Handle, Position } from 'reactflow';
+import { FC, useCallback } from 'react';
+import { NodeProps, Position } from 'reactflow';
+import { Data } from '../ReactFlowRoute';
+import { CustomHandle } from './custom-handle.component';
 
 import styles from './node.module.scss';
 
-const handleStyle = { left: 10 };
-
-export const TextUpdaterNode = ({ data }) => {
+export const TextUpdaterNode: FC<NodeProps<Data>> = (props): JSX.Element => {
   const onChange = useCallback((evt) => {
     console.log(evt.target.value);
   }, []);
 
   return (
     <>
-      <Handle type="target" position={Position.Top} />
-      <div className={styles.node}>
-        <div className={styles.field}>
-          <label htmlFor="text">Text:</label>
-          <input id="text" name="text" onChange={onChange} className="nodrag" />
+      <div className={styles.node} style={{ minWidth: '200px' }}>
+        <header className={styles.header} style={{
+          backgroundColor: props.data.headerBackground,
+          color: props.data.headerForeground,
+        }}>
+          <h1 className={styles.heading}>{props.data.label}</h1>
+        </header>
+
+        <div className={styles.body}>
+          <div className={styles.node}>
+            <div className={styles.field}>
+              <input aria-label={props.data.label} name="text" onChange={onChange} className="nodrag" />
+            </div>
+          </div>
+          <div className={styles.handles}>
+            <CustomHandle
+              label={props.data.label}
+              id={props.id}
+              type="source"
+              position={Position.Right}
+              valueType={props.data.valueType}
+            />
+          </div>
         </div>
       </div>
-      <Handle type="source" position={Position.Bottom} id="a" />
-      <Handle type="source" position={Position.Bottom} id="b" style={handleStyle} />
     </>
   );
 }

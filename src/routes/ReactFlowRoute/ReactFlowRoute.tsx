@@ -14,30 +14,35 @@ import ReactFlow, {
   ReactFlowProvider,
   useReactFlow,
   HandleProps,
+  NodeTypes,
 } from 'reactflow';
 import { Button } from '../../components/Button/Button';
 import { TextUpdaterNode } from './nodes/text-updater.component';
 import { SourceNode } from './nodes/source.component';
 
-import 'reactflow/dist/style.css';
+import 'reactflow/dist/base.css';
 import styles from './ReactFlowRoute.module.scss';
 
-interface HandleConfig extends Partial<HandleProps> {
+export interface HandleConfig extends Omit<HandleProps, 'position'> {
   label: string,
 }
 
-interface Data {
+export interface Data {
   label?: string,
-  headerColor?: string,
+  headerForeground?: string,
+  headerBackground?: string,
   handles?: HandleConfig[]
   minWidth?: number,
   resizable?: boolean,
   value?: unknown,
+  valueType?: string,
 }
 
-const nodeTypes = {
+const nodeTypes: NodeTypes = {
   textUpdater: TextUpdaterNode,
   source: SourceNode,
+  target: SourceNode,
+  concatenate: SourceNode,
 };
 
 const initialNodes: Node<Data>[] = [
@@ -48,13 +53,14 @@ const initialNodes: Node<Data>[] = [
     data: {
       minWidth: 250,
       resizable: false,
-      label: 'Wibble',
-      headerColor: 'green',
+      label: 'Source',
+      headerForeground: 'white',
+      headerBackground: 'green',
       handles: [
         {
           id: '1',
           label: 'top',
-          type: 'target',
+          type: 'source',
         },
         {
           id: '2',
@@ -80,21 +86,96 @@ const initialNodes: Node<Data>[] = [
     }
   },
   {
-    id: '1',
-    data: { label: 'Hello' },
-    position: { x: 0, y: 0 },
-    type: 'input',
+    id: 'target',
+    type: 'target',
+    position: { x: 300, y: 200 },
+    data: {
+      minWidth: 250,
+      resizable: false,
+      label: 'Target',
+      headerBackground: 'green',
+      headerForeground: 'white',
+      handles: [
+        {
+          id: '1',
+          label: 'top',
+          type: 'target',
+        },
+        {
+          id: '2',
+          label: 'middle',
+          type: 'target',
+        },
+        {
+          id: '3',
+          label: 'bottom',
+          type: 'target',
+        },
+        {
+          id: '4',
+          label: 'bottom2',
+          type: 'target',
+        },
+        {
+          id: '5',
+          label: 'Bottom3',
+          type: 'target',
+        },
+      ],
+    }
   },
   {
-    id: '2',
-    data: { label: 'World' },
-    position: { x: 100, y: 100 },
+    id: 'concatenate',
+    type: 'concatenate',
+    position: { x: 550, y: 200 },
+    data: {
+      minWidth: 250,
+      resizable: false,
+      label: 'Concatenate',
+      headerBackground: 'blue',
+      headerForeground: 'white',
+      handles: [
+        {
+          id: '1',
+          label: 'Value 1',
+          type: 'target',
+        },
+        {
+          id: '2',
+          label: 'Value 2',
+          type: 'target',
+        },
+        {
+          id: '3',
+          label: 'Output',
+          type: 'source',
+        },
+      ],
+    }
   },
   {
-    id: 'node-1',
+    id: 'text-1',
     type: 'textUpdater',
-    position: { x: 350, y: 200 },
-    data: { value: 123 }
+    position: { x: 50, y: 50 },
+    data: {
+      label: 'Value',
+      headerBackground: 'purple',
+      headerForeground: 'white',
+      value: 'Hello',
+      valueType: 'number',
+    }
+  },
+  {
+    id: 'text-2',
+    type: 'textUpdater',
+    position: { x: 50, y: 400 },
+    data: {
+      label: 'Value',
+      headerBackground: 'purple',
+      headerForeground: 'white',
+      value: 'world',
+      valueType: 'string',
+    }
   },
 ];
 

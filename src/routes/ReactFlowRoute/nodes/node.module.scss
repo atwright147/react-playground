@@ -1,4 +1,6 @@
 $borderRadius: .20rem;
+$handleSize: 11px;
+
 
 .header {
   background-color: white;
@@ -37,6 +39,7 @@ $borderRadius: .20rem;
 .field {
   display: flex;
   flex-direction: column;
+  padding: 0 .5rem;
 }
 
 .handles {
@@ -51,18 +54,37 @@ $borderRadius: .20rem;
 }
 
 .source {
-  :global(.react-flow__handle) {
-    margin-right: -4px;
-  }
-
   justify-content: flex-end;
+
+  :global(.react-flow__handle) {
+    margin-right: -$handleSize / 2 - 1px;
+  }
 }
 
 .target {
-  :global(.react-flow__handle) {
-    margin-left: -4px;
-  }
-
   flex-direction: row-reverse;
   justify-content: flex-end;
+
+  :global(.react-flow__handle) {
+    margin-left: -$handleSize / 2 - 1px;
+  }
+}
+
+:global(.react-flow__handle) {
+  width: $handleSize;
+  height: $handleSize;
+  border: 1px solid white;
+  border-radius: 50%;
+}
+
+:global(.react-flow__handle).boolean {
+  background-color: red;
+}
+
+:global(.react-flow__handle).number {
+  background-color: green;
+}
+
+:global(.react-flow__handle).string {
+  background-color: blue;
 }
