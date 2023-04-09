@@ -14,7 +14,6 @@ import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
 import { FormRoute } from './routes/FormRoute/FormRoute';
 import { TodosRoute } from './routes/Todos/TotosRoute';
 import { StarWarsRoute } from './routes/StarWarsRoute/StarWarsRoute';
-import { FlumeRoute } from './routes/Flume/FlumeRoute';
 import { ReactFlowRoute } from './routes/ReactFlowRoute/ReactFlowRoute';
 
 import 'normalize.css';
@@ -45,10 +44,6 @@ const router = createBrowserRouter([
       {
         path: 'starwars',
         element: <StarWarsRoute />,
-      },
-      {
-        path: 'flume',
-        element: <FlumeRoute />,
       },
       {
         path: 'reactflow',

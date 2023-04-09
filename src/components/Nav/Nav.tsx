@@ -9,7 +9,6 @@ export const Nav = (): JSX.Element => (
     <NavLink className={styles.link} to="/drag-and-drop">Drag and Drop</NavLink>
     <NavLink className={styles.link} to="/todos">Todos</NavLink>
     <NavLink className={styles.link} to="/starwars">Star Wars</NavLink>
-    <NavLink className={styles.link} to="/flume">Flume</NavLink>
     <NavLink className={styles.link} to="/reactflow">React Flow</NavLink>
     <hr />
     <h2>Components</h2>

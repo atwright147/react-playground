@@ -17,7 +17,6 @@
     "@hookform/resolvers": "^3.0.0",
     "@reactflow/node-resizer": "^2.1.0",
     "classnames": "^2.3.2",
-    "flume": "^0.8.2",
     "ky": "^0.33.3",
     "normalize.css": "^8.0.1",
     "react": "^18.2.0",
@@ -51,14 +50,6 @@
     "react-dnd-accessible-backend": {
       "react": "$react",
       "react-dnd": "$react-dnd"
-    },
-    "flume": {
-      "react": "$react",
-      "react-dom": "$react-dom"
-    },
-    "@reach/utils": {
-      "react": "$react",
-      "react-dom": "$react-dom"
     }
   }
 }
