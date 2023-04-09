@@ -6,35 +6,39 @@ import { Textarea } from '../../components/fields/Textarea/Textarea';
 export const FieldsRoute = (): JSX.Element => (
   <>
     <Input
-      label="My Field"
-      id="myField"
-      name="myField"
+      label="Field 1"
+      id="field-1"
+      name="field-1"
     />
 
     <Input
-      label="My Field"
-      id="myField"
-      name="myField"
+      label="Field 2"
+      id="field-2"
+      name="field-2"
       left={<FaBeer />}
     />
 
     <Input
-      label="My Field"
-      id="myField"
-      name="myField"
+      label="Field 3"
+      id="field-3"
+      name="field-3"
       right={<FaCocktail />}
     />
 
     <Input
-      label="My Field"
-      id="myField"
-      name="myField"
+      label="Field 4"
+      id="field-4"
+      name="field-4"
       left={<FaBeer />}
       right={<FaCocktail />}
     />
 
     <hr />
 
-    <Textarea label="Textarea" handle={<div></div>}/>
+    <Textarea
+      label="Textarea"
+      id="textarea-1"
+      name="textarea-1"
+    />
   </>
 );
