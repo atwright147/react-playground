@@ -1,13 +1,31 @@
-import { FC, useCallback } from 'react';
-import { NodeProps, Position } from 'reactflow';
+import { FC, useCallback, useState } from 'react';
+import { NodeProps, Position, useReactFlow } from 'reactflow';
 import { Data } from '../ReactFlowRoute';
 import { CustomHandle } from './custom-handle.component';
 
 import styles from './node.module.scss';
 
 export const TextUpdaterNode: FC<NodeProps<Data>> = (props): JSX.Element => {
+  const instance = useReactFlow();
+  const [value, setValue] = useState(props.data.value as string);
+  console.info(props);
+
   const onChange = useCallback((evt) => {
-    console.log(evt.target.value);
+    setValue(evt.target.value);
+    instance.setNodes((nodes) =>
+      nodes.map((node) => {
+        if (node.id === props.id) {
+          return {
+            ...node,
+            data: {
+              ...node.data,
+              value: evt.target.value,
+            }
+          }
+        }
+        return node;
+      })
+    );
   }, []);
 
   return (
@@ -23,7 +41,13 @@ export const TextUpdaterNode: FC<NodeProps<Data>> = (props): JSX.Element => {
         <div className={styles.body}>
           <div className={styles.node}>
             <div className={styles.field}>
-              <input aria-label={props.data.label} name="text" onChange={onChange} className="nodrag" />
+              <input
+                aria-label={props.data.label}
+                name="text"
+                onChange={onChange}
+                value={value}
+                className="nodrag"
+              />
             </div>
           </div>
           <div className={styles.handles}>
