@@ -1,7 +1,26 @@
-import { beforeEach, describe, expect, it, vi } from 'vitest'
+import { beforeEach, describe, expect, it } from 'vitest'
 
-import { Engine } from './engine';
+import { RootEngine } from './engine.js';
 import { klona } from 'klona';
+// import ReactFlow, {
+//   addEdge,
+//   applyEdgeChanges,
+//   applyNodeChanges,
+//   Background,
+//   Controls,
+//   Edge,
+//   Node,
+//   OnConnect,
+//   OnEdgesChange,
+//   OnNodesChange,
+//   ReactFlowInstance,
+//   ReactFlowProvider,
+//   useReactFlow,
+//   HandleProps,
+//   NodeTypes,
+// } from 'reactflow';
+// import { TextUpdaterNode } from '../../../routes/ReactFlowRoute/nodes/text-updater.component.ts';
+// import { SourceNode } from '../../../routes/ReactFlowRoute/nodes/source.component.ts';
 
 const DATA = {
   "nodes": [
@@ -56,17 +75,17 @@ const DATA = {
       {
           "width": 200,
           "height": 166,
-          "id": "targetId",
+          "id": "target",
           "type": "target",
           "position": {
-              "x": 565,
-              "y": 208
+              "x": 300,
+              "y": 200
           },
           "data": {
-              "root": true,
               "minWidth": 250,
               "resizable": false,
               "label": "Target",
+              "root": true,
               "headerBackground": "green",
               "headerForeground": "white",
               "handles": [
@@ -97,21 +116,19 @@ const DATA = {
                   }
               ]
           },
-          "selected": false,
           "positionAbsolute": {
-              "x": 565,
-              "y": 208
-          },
-          "dragging": false
+              "x": 300,
+              "y": 200
+          }
       },
       {
           "width": 200,
           "height": 118,
-          "id": "concatenateId",
+          "id": "concatenate",
           "type": "concatenate",
           "position": {
-              "x": 316,
-              "y": 226
+              "x": 550,
+              "y": 200
           },
           "data": {
               "minWidth": 250,
@@ -137,12 +154,10 @@ const DATA = {
                   }
               ]
           },
-          "selected": true,
           "positionAbsolute": {
-              "x": 316,
-              "y": 226
-          },
-          "dragging": false
+              "x": 550,
+              "y": 200
+          }
       },
       {
           "width": 200,
@@ -185,59 +200,9 @@ const DATA = {
               "x": 50,
               "y": 400
           }
-      },
-      {
-          "width": 200,
-          "height": 96,
-          "id": "text-3",
-          "type": "textUpdater",
-          "position": {
-              "x": 50,
-              "y": 500
-          },
-          "data": {
-              "label": "Value",
-              "headerBackground": "purple",
-              "headerForeground": "white",
-              "value": "Andy",
-              "valueType": "string"
-          },
-          "positionAbsolute": {
-              "x": 50,
-              "y": 500
-          }
       }
   ],
-  "edges": [
-      {
-          "source": "concatenateId",
-          "sourceHandle": "3",
-          "target": "targetId",
-          "targetHandle": "1",
-          "id": "reactflow__edge-concatenateId3-targetId1"
-      },
-      {
-          "source": "text-3",
-          "sourceHandle": "text-3",
-          "target": "targetId",
-          "targetHandle": "2",
-          "id": "reactflow__edge-text-3text-3-targetId2"
-      },
-      {
-          "source": "text-2",
-          "sourceHandle": "text-2",
-          "target": "concatenateId",
-          "targetHandle": "2",
-          "id": "reactflow__edge-text-2text-2-concatenateId2"
-      },
-      {
-          "source": "text-1",
-          "sourceHandle": "text-1",
-          "target": "concatenateId",
-          "targetHandle": "1",
-          "id": "reactflow__edge-text-1text-1-concatenateId1"
-      }
-  ],
+  "edges": [],
   "viewport": {
       "x": 0,
       "y": 0,
@@ -252,67 +217,33 @@ const DATA = {
 //   concatenate: SourceNode,
 // };
 
-describe('Engine', () => {
-  describe('execute()', () => {
-    let EngineInstance: Engine;
-    let testGraph;
-
-    beforeEach(() => {
-      testGraph = klona(DATA);
-      EngineInstance = new Engine(testGraph);
-    });
-
-    it('should call getRootNode()', () => {
-      const getRootNodeSpy = vi.spyOn(EngineInstance, 'getRootNode')
-      EngineInstance.execute();
-      expect(getRootNodeSpy).toHaveBeenCalledTimes(1);
-    });
-  });
-
+describe('RootEngine', () => {
   describe('getRootNode()', () => {
-    let EngineInstance: Engine;
-    let testGraph;
+    let EngineInstance;
+    let testData;
 
     beforeEach(() => {
-      testGraph = klona(DATA);
-      EngineInstance = new Engine(testGraph);
+      EngineInstance = new RootEngine({ nodeTypes: {} }, {}, {});
+      testData = klona(DATA);
     });
 
     describe('given one root node', () => {
       it('should return the root node', () => {
-        EngineInstance.getRootNode();
-        expect(EngineInstance.rootNode).toEqual(testGraph.nodes[1]);
+        expect(EngineInstance.getRootNode(testData.nodes)).toEqual(testData.nodes[1]);
       });
     });
 
     describe('given no root node', () => {
       it('should throw', () => {
-        testGraph.nodes[1].data.root = false;
-        expect(() => EngineInstance.getRootNode()).toThrow();
+        testData.nodes[1].data.root = false;
+        expect(() => EngineInstance.getRootNode(testData.nodes)).toThrow();
       });
     });
 
     describe('given more than one root node', () => {
       it('should throw', () => {
-        testGraph.nodes[0].data.root = true;
-        expect(() => EngineInstance.getRootNode()).toThrow();
-      });
-    });
-  });
-
-  describe('getRootHandleEdges()', () => {
-    let EngineInstance: Engine;
-    let testGraph;
-
-    beforeEach(() => {
-      testGraph = klona(DATA);
-      EngineInstance = new Engine(testGraph);
-      EngineInstance.getRootNode();
-    });
-
-    describe('given some connected edges', () => {
-      it('should return the connected edges', () => {
-        expect(EngineInstance.getRootHandleEdges()).toHaveLength(2);
+        testData.nodes[0].data.root = true;
+        expect(() => EngineInstance.getRootNode(testData.nodes)).toThrow();
       });
     });
   });

@@ -28,6 +28,7 @@ export interface HandleConfig extends Omit<HandleProps, 'position'> {
 }
 
 export interface Data {
+  root?: boolean,
   label?: string,
   headerForeground?: string,
   headerBackground?: string,
@@ -86,10 +87,11 @@ const initialNodes: Node<Data>[] = [
     }
   },
   {
-    id: 'target',
+    id: 'targetId',
     type: 'target',
     position: { x: 300, y: 200 },
     data: {
+      root: true,
       minWidth: 250,
       resizable: false,
       label: 'Target',
@@ -125,7 +127,7 @@ const initialNodes: Node<Data>[] = [
     }
   },
   {
-    id: 'concatenate',
+    id: 'concatenateId',
     type: 'concatenate',
     position: { x: 550, y: 200 },
     data: {
@@ -174,6 +176,18 @@ const initialNodes: Node<Data>[] = [
       headerBackground: 'purple',
       headerForeground: 'white',
       value: 'world',
+      valueType: 'string',
+    }
+  },
+  {
+    id: 'text-3',
+    type: 'textUpdater',
+    position: { x: 50, y: 500 },
+    data: {
+      label: 'Value',
+      headerBackground: 'purple',
+      headerForeground: 'white',
+      value: 'Andy',
       valueType: 'string',
     }
   },
