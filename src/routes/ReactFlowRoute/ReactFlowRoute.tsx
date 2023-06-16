@@ -16,6 +16,8 @@ import ReactFlow, {
   HandleProps,
   NodeTypes,
 } from 'reactflow';
+import { FaDelicious } from 'react-icons/fa';
+
 import { Button } from '../../components/Button/Button';
 import { TextUpdaterNode } from './nodes/text-updater.component';
 import { SourceNode } from './nodes/source.component';
@@ -237,6 +239,15 @@ export const Flow = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
+      <div className={styles.toolbox}>
+        {Object.keys(nodeTypes).map((item) => (
+          <div className={styles.tool}>
+            <FaDelicious className={styles.icon} />
+            <div className={styles.label}>{item}</div>
+          </div>
+        ))}
+      </div>
+
       <div className={styles.flow}>
         <ReactFlow
           nodes={nodes}
