@@ -48,10 +48,14 @@ export const Accordion = ({ id, title, items }: Props): JSX.Element => {
         const isOpen = state[index];
 
         return (
-          <div className={classnames(styles.item, {
-            [styles.open]: isOpen,
-            [styles.closed]: !isOpen,
-          })} key={`${item.heading}__${index}`} id={id}>
+          <div
+            className={classnames(styles.item, {
+              [styles.open]: isOpen,
+              [styles.closed]: !isOpen,
+            })}
+            id={id}
+            key={`${item.heading}__${index}`}
+          >
             <h3 className={styles.heading} id={`${id}-heading--${index}`}>
               <button
                 onClick={(event) => handleClick(event, index)}
@@ -63,6 +67,7 @@ export const Accordion = ({ id, title, items }: Props): JSX.Element => {
             </h3>
 
             <section
+              data-testid="content"
               id={`${id}-section--${index}`}
               aria-labelledby={`${id}-heading--${index}`}
               aria-hidden={!isOpen}
