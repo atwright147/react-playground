@@ -65,6 +65,7 @@ export const Accordion = ({ id, title, items }: Props): JSX.Element => {
             <section
               id={`${id}-section--${index}`}
               aria-labelledby={`${id}-heading--${index}`}
+              aria-hidden={!isOpen}
               className={classnames('content', styles.section)}
               style={{ maxHeight: isOpen ? 'auto' : '0' }}
             >
