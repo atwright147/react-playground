@@ -20,6 +20,10 @@ body {
   font-size: var(--font-size);
 }
 
+code {
+  font-family: "Fira Code", source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
 .grid {
   display: grid;
   height: 100%;

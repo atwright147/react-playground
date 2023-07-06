@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import 'normalize.css';
 
 import { Root } from './routes/Root/Root';
 import { ErrorPage } from './routes/Error/Error';
@@ -16,7 +17,6 @@ import { TodosRoute } from './routes/Todos/TotosRoute';
 import { StarWarsRoute } from './routes/StarWarsRoute/StarWarsRoute';
 import { ReactFlowRoute } from './routes/ReactFlowRoute/ReactFlowRoute';
 
-import 'normalize.css';
 import './index.scss';
 
 const router = createBrowserRouter([

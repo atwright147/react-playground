@@ -111,7 +111,7 @@ export const Basket = (): JSX.Element => {
   return (
     <>
       <h2>Stock</h2>
-      <p>Press <code>Ctrl+d</code> when the item you want to drag is focused</p>
+      <p>Press <code>Tab</code> to focus an item, then press <code>Ctrl+d</code> to &lsquo;pickup&rsquo; the item. Use the cursor key to actually drag the item</p>
       <div className={styles.stock}>
         {stock.map((item) => <ItemCard draggable key={item.id} id={item.id} name={item.name} />)}
       </div>
