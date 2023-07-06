@@ -21,6 +21,11 @@ export const StarWarsRoute = (): JSX.Element => {
   return (
     <>
       <h1>Star Wars People</h1>
+      <p>
+        Demo of using <a href="https://docs.pmnd.rs/zustand/getting-started/introduction" target="_blank" rel="noopener">Zustand</a>{' '}
+        to manage server state and <a href="https://github.com/sindresorhus/ky#hooks" target="_blank" rel="noopener">Ky.js Hooks</a>{' '}
+        to control the state of a spinner.
+      </p>
 
       <div className={styles.container}>
         <ul className={styles.people}>

@@ -1,6 +1,15 @@
 .container {
   display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.flowAndPreview {
+  display: grid;
   grid-template-columns: 1fr auto;
+}
+
+.preview {
+  min-width: 8rem;
 }
 
 .container,

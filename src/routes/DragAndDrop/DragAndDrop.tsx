@@ -110,6 +110,9 @@ export const Basket = (): JSX.Element => {
 
   return (
     <>
+      <h1>Drag and Drop</h1>
+      <p>A demo of an accessible drag and drop interface.</p>
+
       <h2>Stock</h2>
       <p>Press <code>Tab</code> to focus an item, then press <code>Ctrl+d</code> to &lsquo;pickup&rsquo; the item. Use the cursor key to actually drag the item</p>
       <div className={styles.stock}>

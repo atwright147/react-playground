@@ -38,6 +38,7 @@ export interface Data {
   valueType?: string,
 }
 
+//#region Nodes Config
 const nodeTypes: NodeTypes = {
   textUpdater: TextUpdaterNode,
   source: SourceNode,
@@ -178,6 +179,7 @@ const initialNodes: Node<Data>[] = [
     }
   },
 ];
+//#endregion
 
 const initialEdges = [];
 
@@ -237,24 +239,31 @@ export const Flow = (): JSX.Element => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.flow}>
-        <ReactFlow
-          nodes={nodes}
-          onNodesChange={onNodesChange}
-          edges={edges}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          nodeTypes={nodeTypes}
-          onInit={setRfInstance}
-        >
-          <Background />
-          <Controls />
-        </ReactFlow>
+      <div className={styles.heading}>
+        <h1>Visual Programming</h1>
+        <p>Demo of a set of custom React Flow nodes. Use the Save button to view the flow state (in the DevTools Console).
+          Use the Restore button to load a saved state from the stubs server.</p>
       </div>
 
-      <div className={styles.preview}>
-        <Button onClick={onSave}>Save</Button>
-        <Button onClick={onRestore}>Restore</Button>
+      <div className={styles.flowAndPreview}>
+        <div className={styles.flow}>
+          <ReactFlow
+            nodes={nodes}
+            onNodesChange={onNodesChange}
+            edges={edges}
+            onEdgesChange={onEdgesChange}
+            onConnect={onConnect}
+            nodeTypes={nodeTypes}
+            onInit={setRfInstance}
+          >
+            <Background />
+            <Controls />
+          </ReactFlow>
+        </div>
+        <div className={styles.preview}>
+          <Button onClick={onSave}>Save</Button>
+          <Button onClick={onRestore}>Restore</Button>
+        </div>
       </div>
     </div>
   );

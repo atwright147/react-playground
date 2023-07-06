@@ -26,6 +26,7 @@ export const TodosRoute = (): JSX.Element => {
   return (
     <>
       <h1>Todos</h1>
+      <p>Use <a href="https://docs.pmnd.rs/zustand/getting-started/introduction" target="_blank" rel="noopener">Zustand</a> to manage state for todos.</p>
 
       <div className={styles.container}>
         <ul className={styles.todos}>

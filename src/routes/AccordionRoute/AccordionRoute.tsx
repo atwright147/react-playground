@@ -12,5 +12,9 @@ for (let index = 1; index < 10; index++) {
 }
 
 export const AccordionRoute = (): JSX.Element => (
-  <Accordion id="a11y-accordion" title="Accordion" items={items} />
+  <>
+    <h1>Accordion</h1>
+    <p>Demo of a custom accordion, designed to be accessible.</p>
+    <Accordion id="a11y-accordion" title="Accordion of Items" items={items} />
+  </>
 );
