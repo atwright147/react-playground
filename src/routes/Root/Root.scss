@@ -1,16 +1,12 @@
 :root {
-  /* ct === Cinque Terre */
-  /* https://color.adobe.com/create/image */
-  /* https://www.yogawinetravel.com/wp-content/uploads/2016/10/Riomaggiore-in-Cinque-Terre-Italy.jpg */
-  --ct-dark-blue: #4178BF;
-  --ct-light-blue: #79A3D9;
+  --ct-dark-blue: hsl(209, 23%, 22%);
+  --ct-light-blue: hsl(209, 60%, 65%);
   --ct-yellow: #F2D06B;
   --ct-orange: #D98E73;
   --ct-red: #D9483B;
 
   --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 	--font-size: 14px;
-
 }
 
 html,
@@ -47,12 +43,12 @@ body {
 
 .aside {
   grid-area: aside;
-  background-color: var(--ct-yellow);
+  background-color: var(--ct-dark-blue);
 }
 
 .footer {
   grid-area: footer;
-  background-color: var(--ct-orange);
+  background-color: var(--ct-dark-blue);
 }
 
 .header,
