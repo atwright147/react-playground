@@ -39,6 +39,19 @@ describe('Accordion', () => {
     expect(screen.getAllByTestId('content')).toHaveLength(numItems);
   });
 
+  it('should render buttons with correct aria-controls attribute', async () => {
+    const numItems = 3;
+    const mockId = 'mockId';
+    const mockItems = getMockItems(numItems);
+    const mockTitle = 'Mock title';
+
+    render(<Accordion id={mockId} title={mockTitle} items={mockItems} />);
+
+    screen.getAllByRole('button').forEach((item, index) => {
+      expect(item).toHaveAttribute('aria-controls', `${mockId}-section--${index}`);
+    });
+  });
+
   describe('given no buttons have been clicked', () => {
     it('should render all items as collapsed', () => {
       const numItems = 3;
