@@ -16,23 +16,25 @@ const getMockItems = (max: number): Item[] => {
 }
 
 describe('Accordion', () => {
-  it('should render a title', () => {
-    const numItems = 3;
-    const mockId = 'mockId';
-    const mockItems = getMockItems(numItems);
-    const mockTitle = 'Mock title';
+  let numItems: number;
+  let mockId: string;
+  let mockItems: Item[];
+  let mockTitle: string;
 
+  beforeEach(() => {
+    numItems = 3;
+    mockId = 'mockId';
+    mockItems = getMockItems(numItems);
+    mockTitle = 'Mock title';
+  });
+
+  it('should render a title', () => {
     render(<Accordion id={mockId} title={mockTitle} items={mockItems} />);
 
     expect(screen.getByRole('heading', { level: 2 })).toHaveTextContent(mockTitle);
   });
 
   it('should render all items', () => {
-    const numItems = 3;
-    const mockId = 'mockId';
-    const mockItems = getMockItems(numItems);
-    const mockTitle = 'Mock title';
-
     render(<Accordion id={mockId} title={mockTitle} items={mockItems} />);
 
     expect(screen.getAllByRole('heading', { level: 3 })).toHaveLength(numItems);
@@ -40,11 +42,6 @@ describe('Accordion', () => {
   });
 
   it('should render buttons with correct aria-controls attribute', async () => {
-    const numItems = 3;
-    const mockId = 'mockId';
-    const mockItems = getMockItems(numItems);
-    const mockTitle = 'Mock title';
-
     render(<Accordion id={mockId} title={mockTitle} items={mockItems} />);
 
     screen.getAllByRole('button').forEach((item, index) => {
@@ -54,11 +51,6 @@ describe('Accordion', () => {
 
   describe('given no buttons have been clicked', () => {
     it('should render all items as collapsed', () => {
-      const numItems = 3;
-      const mockId = 'mockId';
-      const mockItems = getMockItems(numItems);
-      const mockTitle = 'Mock title';
-
       render(<Accordion id={mockId} title={mockTitle} items={mockItems} />);
 
       screen.getAllByRole('button').forEach((item) => {
@@ -73,14 +65,9 @@ describe('Accordion', () => {
 
   describe('given some buttons has been clicked', () => {
     it('should render some items as expanded', async () => {
-      const numItems = 3;
-      const mockId = 'mockId';
-      const mockItems = getMockItems(numItems);
-      const mockTitle = 'Mock title';
       const itemToCheck = 1;
 
       render(<Accordion id={mockId} title={mockTitle} items={mockItems} />);
-
       await userEvent.click(screen.getAllByRole('button')[itemToCheck]);
 
       expect(screen.getAllByRole('button')[itemToCheck]).toHaveAttribute('aria-expanded', 'true');
