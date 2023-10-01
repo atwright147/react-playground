@@ -1,6 +1,6 @@
-.item {
-  outline: 1px dashed green;
-}
+@import '../../colors.scss';
+
+.item {}
 
 .title {}
 
@@ -9,7 +9,8 @@
   pointer-events: none;
   position: relative;
   z-index: 10;
-  background-color: black;
+  background-color: $purple-dark-300;
+  border: 1px solid red;
 
   &::after {
     content: "\00d7";
@@ -22,7 +23,6 @@
 
   button {
     pointer-events: all;
-    outline: 1px dashed yellow;
     appearance: none;
     background-color: transparent;
     border: 0;
@@ -45,8 +45,9 @@
 }
 
 .section {
-  outline: 1px dotted red;
-  outline-offset: -2px;
+  $border: 1px solid red;
+  border-left: $border;
+  border-right: $border;
   transition: all .25s ease-in-out;
   overflow: hidden;
 
