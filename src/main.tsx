@@ -14,6 +14,7 @@ import { FieldsRoute } from './routes/FieldsRoute/FieldsRoute';
 import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
 import { FormRoute } from './routes/FormRoute/FormRoute';
 import { TodosRoute } from './routes/Todos/TotosRoute';
+import { TodosWithContextRoute } from './routes/TodosWithContext/TodosWithContextRoute';
 import { StarWarsRoute } from './routes/StarWarsRoute/StarWarsRoute';
 import { ReactFlowRoute } from './routes/ReactFlowRoute/ReactFlowRoute';
 
@@ -40,6 +41,10 @@ const router = createBrowserRouter([
       {
         path: 'todos',
         element: <TodosRoute />,
+      },
+      {
+        path: 'todos-context',
+        element: <TodosWithContextRoute />,
       },
       {
         path: 'starwars',
