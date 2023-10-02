@@ -1,6 +1,5 @@
 import { useContext } from 'react';
 import classNames from 'classnames';
-import { Button } from '../../components/Button/Button';
 import { Checkbox } from '../../components/fields/Checkbox/Checkbox';
 import { TodosContext } from './TodosContext';
 
@@ -8,6 +7,18 @@ import styles from './TodosWithContextRoute.module.scss';
 
 export const Todos = (): JSX.Element => {
   const { todos, setTodos } = useContext(TodosContext);
+
+  const handleChange = (id: string): void => {
+    setTodos(todos.map((todo) => {
+      if (todo.id === id) {
+        return {
+          ...todo,
+          done: !todo.done,
+        };
+      }
+      return todo;
+    }));
+  }
 
   return (
     <>
@@ -25,7 +36,7 @@ export const Todos = (): JSX.Element => {
                 id={todo.id}
                 name={todo.id}
                 className={classNames({ done: todo.done })}
-                // onChange={() => handleChange(todo.id)}
+                onChange={() => handleChange(todo.id)}
                 checked={todo.done}
               />
 
