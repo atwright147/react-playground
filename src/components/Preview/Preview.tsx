@@ -1,7 +1,5 @@
-import { FC } from 'react';
+import type { FC } from 'react';
 
 export const Preview: FC = (data): JSX.Element | null => {
-  return (
-    <pre>{JSON.stringify(data, null, 2)}</pre>
-  );
+  return <pre>{JSON.stringify(data, null, 2)}</pre>;
 };

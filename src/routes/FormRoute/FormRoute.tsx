@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { Controller, SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
+import { Controller, type SubmitHandler, useFieldArray, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { DevTool } from "@hookform/devtools";
+import { DevTool } from '@hookform/devtools';
 
 import * as z from 'zod';
 
@@ -17,15 +17,15 @@ const schema = z.object({
 });
 
 interface TestFieldArray {
-  col1: string,
-  col2: string,
-  col3: string,
+  col1: string;
+  col2: string;
+  col3: string;
 }
 
 interface FormData {
-  title: string,
-  description: string,
-  test: any[],
+  title: string;
+  description: string;
+  test: any[];
 }
 
 const defaultValues: FormData = {
@@ -38,19 +38,27 @@ const defaultValues: FormData = {
       col3: '',
     },
   ],
-}
+};
 
 export const FormRoute = (): JSX.Element => {
   const [formData, setFormData] = useState<FormData>({} as FormData);
 
-  const { control, getValues, handleSubmit, register, reset, formState, formState: { errors } } = useForm<FormData>({
+  const {
+    control,
+    getValues,
+    handleSubmit,
+    register,
+    reset,
+    formState,
+    formState: { errors },
+  } = useForm<FormData>({
     defaultValues,
     resolver: zodResolver(schema),
     mode: 'all',
   });
   const { fields, append, remove } = useFieldArray({
     control,
-    name: "test"
+    name: 'test',
   });
 
   useEffect(() => {
@@ -59,11 +67,11 @@ export const FormRoute = (): JSX.Element => {
 
   const onSubmit: SubmitHandler<FormData> = (data): void => {
     console.log(data);
-  }
+  };
 
   const onChange = (): void => {
     setFormData(getValues());
-  }
+  };
 
   return (
     <>
@@ -74,14 +82,7 @@ export const FormRoute = (): JSX.Element => {
           control={control}
           name="title"
           render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
-            <Input
-              id="title"
-              name="title"
-              label="Title"
-              value={value}
-              onChange={onChange}
-              errors={error}
-            />
+            <Input id="title" name="title" label="Title" value={value} onChange={onChange} errors={error} />
           )}
           defaultValue=""
         />
@@ -90,14 +91,7 @@ export const FormRoute = (): JSX.Element => {
           control={control}
           name="description"
           render={({ field: { onChange, value }, fieldState: { invalid, error } }) => (
-            <Textarea
-              id="description"
-              name="description"
-              label="Description"
-              value={value}
-              onChange={onChange}
-              errors={error}
-            />
+            <Textarea id="description" name="description" label="Description" value={value} onChange={onChange} errors={error} />
           )}
           defaultValue=""
         />
@@ -105,25 +99,30 @@ export const FormRoute = (): JSX.Element => {
         {fields.map((item, index) => (
           <Fieldset legend={`Field Array ${index + 1}`} key={item.id}>
             <Controller
-                render={({ field }) => <Input label="Column 1" id={`test.${index}.col1`} {...field} />}
-                name={`test.${index}.col1`}
-                control={control}
-              />
-              <Controller
-                render={({ field }) => <Input label="Column 2" id={`test.${index}.col2`} {...field} />}
-                name={`test.${index}.col2`}
-                control={control}
-              />
-              <Controller
-                render={({ field }) => <Input label="Column 3" id={`test.${index}.col3`} {...field} />}
-                name={`test.${index}.col3`}
-                control={control}
-              />
+              render={({ field }) => <Input label="Column 1" id={`test.${index}.col1`} {...field} />}
+              name={`test.${index}.col1`}
+              control={control}
+            />
+            <Controller
+              render={({ field }) => <Input label="Column 2" id={`test.${index}.col2`} {...field} />}
+              name={`test.${index}.col2`}
+              control={control}
+            />
+            <Controller
+              render={({ field }) => <Input label="Column 3" id={`test.${index}.col3`} {...field} />}
+              name={`test.${index}.col3`}
+              control={control}
+            />
 
-              <Button type="button" onClick={() => {
+            <Button
+              type="button"
+              onClick={() => {
                 remove(index);
                 setFormData(getValues());
-              }}>Delete</Button>
+              }}
+            >
+              Delete
+            </Button>
           </Fieldset>
         ))}
 
@@ -135,7 +134,9 @@ export const FormRoute = (): JSX.Element => {
             append({ col1: '', col2: '', col3: '' });
             setFormData(getValues());
           }}
-        >Append</button>
+        >
+          Append
+        </button>
 
         <Button>Submit</Button>
       </form>

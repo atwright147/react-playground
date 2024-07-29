@@ -1,11 +1,11 @@
-import { ComponentPropsWithRef, FC, ReactNode, useState } from 'react';
+import { type ComponentPropsWithRef, type FC, type ReactNode, useState } from 'react';
 import classnames from 'classnames';
-import useClickAway from "react-use-click-away";
+import useClickAway from 'react-use-click-away';
 
 import styles from './Popover.module.scss';
 
 export interface Props extends ComponentPropsWithRef<'div'> {
-  children: ReactNode,
+  children: ReactNode;
 }
 
 // https://accessibleit.disability.illinois.edu/courses/aria-intro/slide30.html
@@ -22,14 +22,10 @@ export const Popover: FC<Props> = ({ children, className, ...props }: Props): JS
   return (
     <div className={classnames('popover', { [styles.open]: open })}>
       <div className="buttonGroup">
-        <button type="button" onClick={console.info}>Label</button>
-        <button
-          type="button"
-          onClick={() => setOpen(!open)}
-          id={props.id}
-          aria-haspopup="true"
-          aria-controls="id-menu"
-        >
+        <button type="button" onClick={console.info}>
+          Label
+        </button>
+        <button type="button" onClick={() => setOpen(!open)} id={props.id} aria-haspopup="true" aria-controls="id-menu">
           <div className={styles.indicator}>&#9650;</div>
         </button>
       </div>
@@ -39,4 +35,4 @@ export const Popover: FC<Props> = ({ children, className, ...props }: Props): JS
       </div>
     </div>
   );
-}
+};

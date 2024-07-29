@@ -3,7 +3,7 @@ import { Header } from '../../components/Header/Header';
 import { Nav } from '../../components/Nav/Nav';
 import { Spinner } from '../../components/Spinner/Spinner';
 
-import './Root.scss'
+import './Root.scss';
 
 export const Root = (): JSX.Element => (
   <>
@@ -16,9 +16,7 @@ export const Root = (): JSX.Element => (
             <img src="/vite.svg" style={{ width: '25px' }} alt="" />
             Left
           </div>
-          <div className="right">
-            Right
-          </div>
+          <div className="right">Right</div>
         </Header>
       </div>
       <div className="aside">

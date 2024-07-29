@@ -1,8 +1,8 @@
-import { FC } from 'react'
-import './App.css'
+import type { FC } from 'react';
+import './App.css';
 
 interface Props {
-  title: string,
+  title: string;
 }
 
 export const App: FC<Props> = ({ title }) => (

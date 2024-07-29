@@ -5,16 +5,16 @@ import ReactFlow, {
   applyNodeChanges,
   Background,
   Controls,
-  Edge,
-  Node,
-  OnConnect,
-  OnEdgesChange,
-  OnNodesChange,
-  ReactFlowInstance,
+  type Edge,
+  type Node,
+  type OnConnect,
+  type OnEdgesChange,
+  type OnNodesChange,
+  type ReactFlowInstance,
   ReactFlowProvider,
   useReactFlow,
-  HandleProps,
-  NodeTypes,
+  type HandleProps,
+  type NodeTypes,
 } from 'reactflow';
 import { Button } from '../../components/Button/Button';
 import { TextUpdaterNode } from './nodes/text-updater.component';
@@ -24,18 +24,18 @@ import 'reactflow/dist/base.css';
 import styles from './ReactFlowRoute.module.scss';
 
 export interface HandleConfig extends Omit<HandleProps, 'position'> {
-  label: string,
+  label: string;
 }
 
 export interface Data {
-  label?: string,
-  headerForeground?: string,
-  headerBackground?: string,
-  handles?: HandleConfig[]
-  minWidth?: number,
-  resizable?: boolean,
-  value?: unknown,
-  valueType?: string,
+  label?: string;
+  headerForeground?: string;
+  headerBackground?: string;
+  handles?: HandleConfig[];
+  minWidth?: number;
+  resizable?: boolean;
+  value?: unknown;
+  valueType?: string;
 }
 
 //#region Nodes Config
@@ -84,7 +84,7 @@ const initialNodes: Node<Data>[] = [
           type: 'source',
         },
       ],
-    }
+    },
   },
   {
     id: 'target',
@@ -123,7 +123,7 @@ const initialNodes: Node<Data>[] = [
           type: 'target',
         },
       ],
-    }
+    },
   },
   {
     id: 'concatenate',
@@ -152,7 +152,7 @@ const initialNodes: Node<Data>[] = [
           type: 'source',
         },
       ],
-    }
+    },
   },
   {
     id: 'text-1',
@@ -164,7 +164,7 @@ const initialNodes: Node<Data>[] = [
       headerForeground: 'white',
       value: 'Hello',
       valueType: 'number',
-    }
+    },
   },
   {
     id: 'text-2',
@@ -176,7 +176,7 @@ const initialNodes: Node<Data>[] = [
       headerForeground: 'white',
       value: 'world',
       valueType: 'string',
-    }
+    },
   },
 ];
 //#endregion
@@ -189,20 +189,11 @@ export const Flow = (): JSX.Element => {
   const [rfInstance, setRfInstance] = useState<ReactFlowInstance>();
   const { setViewport } = useReactFlow();
 
-  const onNodesChange: OnNodesChange = useCallback(
-    (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
-    [setNodes]
-  );
+  const onNodesChange: OnNodesChange = useCallback((changes) => setNodes((nds) => applyNodeChanges(changes, nds)), [setNodes]);
 
-  const onEdgesChange: OnEdgesChange = useCallback(
-    (changes) => setEdges((eds) => applyEdgeChanges(changes, eds)),
-    [setEdges]
-  );
+  const onEdgesChange: OnEdgesChange = useCallback((changes) => setEdges((eds) => applyEdgeChanges(changes, eds)), [setEdges]);
 
-  const onConnect: OnConnect = useCallback(
-    (connection) => setEdges((eds) => addEdge(connection, eds)),
-    [setEdges]
-  );
+  const onConnect: OnConnect = useCallback((connection) => setEdges((eds) => addEdge(connection, eds)), [setEdges]);
 
   const onSave = useCallback(() => {
     if (rfInstance) {
@@ -231,7 +222,6 @@ export const Flow = (): JSX.Element => {
       }
 
       // const flow = JSON.parse(localStorage.getItem(flowKey));
-
     };
 
     restoreFlow();
@@ -241,8 +231,10 @@ export const Flow = (): JSX.Element => {
     <div className={styles.container}>
       <div className={styles.heading}>
         <h1>Visual Programming</h1>
-        <p>Demo of a set of custom React Flow nodes. Use the Save button to view the flow state (in the DevTools Console).
-          Use the Restore button to load a saved state from the stubs server.</p>
+        <p>
+          Demo of a set of custom React Flow nodes. Use the Save button to view the flow state (in the DevTools Console). Use the Restore
+          button to load a saved state from the stubs server.
+        </p>
       </div>
 
       <div className={styles.flowAndPreview}>

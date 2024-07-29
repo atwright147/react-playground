@@ -1,3 +1,1 @@
-export const Home = (): JSX.Element => (
-  <p>Home works!</p>
-);
+export const Home = (): JSX.Element => <p>Home works!</p>;

@@ -3,14 +3,14 @@ import classnames from 'classnames';
 import styles from './Accordion.module.scss';
 
 export interface Props {
-  id: string,
-  title: string,
-  items: Item[],
+  id: string;
+  title: string;
+  items: Item[];
 }
 
 export interface Item {
-  heading: string,
-  content: string,
+  heading: string;
+  content: string;
 }
 
 // Panel open state (`true` if open)
@@ -18,7 +18,7 @@ type State = Record<string, boolean>;
 
 export const Accordion = ({ id, title, items }: Props): JSX.Element => {
   const initialState: State = {};
-  items.forEach((_, index) => initialState[index + ''] = false);
+  items.forEach((_, index) => (initialState[index + ''] = false));
   const [state, setState] = useState<State>(initialState);
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number) => {
@@ -37,8 +37,8 @@ export const Accordion = ({ id, title, items }: Props): JSX.Element => {
       contentElement.style.maxHeight = `${contentElementHeight}px`;
     }
 
-    setState(prevState => ({ ...prevState, [_id]: !prevState[_id] }));
-  }
+    setState((prevState) => ({ ...prevState, [_id]: !prevState[_id] }));
+  };
 
   return (
     <>
@@ -57,11 +57,7 @@ export const Accordion = ({ id, title, items }: Props): JSX.Element => {
             key={`${item.heading}__${index}`}
           >
             <h3 className={styles.heading} id={`${id}-heading--${index}`}>
-              <button
-                onClick={(event) => handleClick(event, index)}
-                aria-expanded={isOpen}
-                aria-controls={`${id}-section--${index}`}
-              >
+              <button onClick={(event) => handleClick(event, index)} aria-expanded={isOpen} aria-controls={`${id}-section--${index}`}>
                 {item.heading}
               </button>
             </h3>
@@ -79,8 +75,8 @@ export const Accordion = ({ id, title, items }: Props): JSX.Element => {
               </div>
             </section>
           </div>
-        )
+        );
       })}
     </>
   );
-}
+};

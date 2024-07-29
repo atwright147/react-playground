@@ -1,13 +1,13 @@
-import { ButtonHTMLAttributes, FC, forwardRef, ReactNode } from 'react';
+import { type ButtonHTMLAttributes, type FC, forwardRef, type ReactNode } from 'react';
 
 import styles from './Button.module.scss';
 
 // https://stackoverflow.com/a/66810748/633056
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
-  left?: ReactNode,
-  children?: ReactNode,
-  right?: ReactNode,
+  left?: ReactNode;
+  children?: ReactNode;
+  right?: ReactNode;
 }
 
 export const Button: FC<Props> = forwardRef<HTMLButtonElement, Props>(
@@ -19,5 +19,5 @@ export const Button: FC<Props> = forwardRef<HTMLButtonElement, Props>(
         {right}
       </div>
     </button>
-  )
+  ),
 );

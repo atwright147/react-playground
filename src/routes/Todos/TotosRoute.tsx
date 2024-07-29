@@ -3,7 +3,7 @@ import { Button } from '../../components/Button/Button';
 import { Checkbox } from '../../components/fields/Checkbox/Checkbox';
 import { useTitle } from '../../hooks/title';
 import { useTodoStore } from '../../stores/todos.store';
-import { Uuid } from '../../types/uuid.type';
+import type { Uuid } from '../../types/uuid.type';
 
 import styles from './TodosRoute.module.scss';
 
@@ -13,20 +13,26 @@ export const TodosRoute = (): JSX.Element => {
 
   const handleChange = (id: Uuid): void => {
     toggleDone(id);
-  }
+  };
 
   const handleRemove = (id: Uuid): void => {
     remove(id);
-  }
+  };
 
   const handleSubmit = (values: any): void => {
     add(values.description);
-  }
+  };
 
   return (
     <>
       <h1>Todos</h1>
-      <p>Use <a href="https://docs.pmnd.rs/zustand/getting-started/introduction" target="_blank" rel="noopener">Zustand</a> to manage state for todos.</p>
+      <p>
+        Use{' '}
+        <a href="https://docs.pmnd.rs/zustand/getting-started/introduction" target="_blank" rel="noreferrer noopener">
+          Zustand
+        </a>{' '}
+        to manage state for todos.
+      </p>
 
       <div className={styles.container}>
         <ul className={styles.todos}>

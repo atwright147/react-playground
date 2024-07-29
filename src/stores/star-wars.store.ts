@@ -2,12 +2,12 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 
 import { client } from '../utils/api/api-client';
-import { Person, SwapiResponse } from '../types/swapi.types';
+import type { Person, SwapiResponse } from '../types/swapi.types';
 
 export interface State {
-  people: Person[],
-  init: () => Promise<void>,
-  hide: (name: string) => void,
+  people: Person[];
+  init: () => Promise<void>;
+  hide: (name: string) => void;
 }
 
 const SWAPI_BASE_URL = 'https://swapi.dev/api';
@@ -31,5 +31,6 @@ export const useStarWarsStore = create<State>()(
         });
       },
     }),
-  { enabled: true }),
+    { enabled: true },
+  ),
 );

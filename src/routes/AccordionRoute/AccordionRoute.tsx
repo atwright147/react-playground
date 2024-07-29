@@ -1,6 +1,6 @@
 import { faker } from '@faker-js/faker';
 
-import { Accordion, Item } from '../../components/Accordion/Accordion';
+import { Accordion, type Item } from '../../components/Accordion/Accordion';
 
 const items: Item[] = [];
 

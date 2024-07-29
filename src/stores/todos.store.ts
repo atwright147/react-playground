@@ -2,15 +2,15 @@ import { create } from 'zustand';
 import { devtools } from 'zustand/middleware';
 import { v4 as uuidv4 } from 'uuid';
 
-import { Todo } from '../types/todo.type';
-import { Uuid } from '../types/uuid.type';
+import type { Todo } from '../types/todo.type';
+import type { Uuid } from '../types/uuid.type';
 
 export interface State {
-  todos: Todo[],
-  toggleDone: (id: Uuid) => void,
-  add: (description: Todo['description']) => void,
-  remove: (id: Uuid) => void,
-  empty: () => void,
+  todos: Todo[];
+  toggleDone: (id: Uuid) => void;
+  add: (description: Todo['description']) => void;
+  remove: (id: Uuid) => void;
+  empty: () => void;
 }
 
 const initialTodos: Todo[] = [
@@ -30,11 +30,7 @@ export const useTodoStore = create<State>((set, get) => ({
   todos: initialTodos,
   toggleDone: (id) => {
     set((state) => ({
-      todos: state.todos.map((todo) => (
-        todo.id === id
-          ? ({ ...todo, done: !todo.done } as Todo)
-          : todo
-      )),
+      todos: state.todos.map((todo) => (todo.id === id ? ({ ...todo, done: !todo.done } as Todo) : todo)),
     }));
   },
   add: (description) => {
@@ -46,7 +42,7 @@ export const useTodoStore = create<State>((set, get) => ({
           description,
           done: false,
         },
-      ]
+      ],
     }));
   },
   remove: (id) => {

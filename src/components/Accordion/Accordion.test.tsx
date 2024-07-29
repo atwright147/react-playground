@@ -2,7 +2,7 @@ import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { faker } from '@faker-js/faker';
 
-import { Accordion, Item } from './Accordion';
+import { Accordion, type Item } from './Accordion';
 
 const getMockItems = (max: number): Item[] => {
   const items: Item[] = [];
@@ -13,7 +13,7 @@ const getMockItems = (max: number): Item[] => {
     });
   }
   return items;
-}
+};
 
 describe('Accordion', () => {
   let numItems: number;
@@ -73,7 +73,7 @@ describe('Accordion', () => {
       expect(screen.getAllByRole('button')[itemToCheck]).toHaveAttribute('aria-expanded', 'true');
       screen.getAllByTestId('content').forEach((item, index) => {
         expect(item).toHaveAttribute('aria-hidden', String(index !== itemToCheck));
-      })
+      });
     });
   });
 });

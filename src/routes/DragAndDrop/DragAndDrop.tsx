@@ -3,11 +3,11 @@ import KeyboardBackend, { isKeyboardDragTrigger } from 'react-dnd-accessible-bac
 import { DndProvider, createTransition } from 'react-dnd-multi-backend';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { useDrag } from 'react-dnd';
-import { FC, useState } from 'react';
+import { type FC, useState } from 'react';
 import styles from './DragAndDrop.module.scss';
 import classnames from 'classnames';
 
-const KeyboardTransition = createTransition("keydown", (event) => {
+const KeyboardTransition = createTransition('keydown', (event) => {
   if (!isKeyboardDragTrigger(event as KeyboardEvent)) return false;
   // This prevention keeps the first keyboard event from causing browser
   // bookmark shortcuts. This can't be done in the Backend because it only
@@ -16,24 +16,24 @@ const KeyboardTransition = createTransition("keydown", (event) => {
   return true;
 });
 
-const MouseTransition = createTransition("mousedown", (event) => {
-  if (event.type.indexOf("touch") !== -1 || event.type.indexOf("mouse") === -1) return false;
+const MouseTransition = createTransition('mousedown', (event) => {
+  if (event.type.indexOf('touch') !== -1 || event.type.indexOf('mouse') === -1) return false;
   return true;
 });
 
 const DND_OPTIONS = {
   backends: [
     {
-      id: "html5",
+      id: 'html5',
       backend: HTML5Backend,
       transition: MouseTransition,
     },
     {
-      id: "keyboard",
+      id: 'keyboard',
       backend: KeyboardBackend,
       context: { window, document },
       options: {
-        announcerClassName: "announcer",
+        announcerClassName: 'announcer',
       },
       preview: true,
       transition: KeyboardTransition,
@@ -42,21 +42,19 @@ const DND_OPTIONS = {
 };
 
 interface Item {
-  id: number,
-  name: string,
+  id: number;
+  name: string;
 }
 
 interface ItemCardProps extends Item {
-  draggable?: boolean,
+  draggable?: boolean;
 }
 
 // custom type guard
 // https://www.typescriptlang.org/docs/handbook/2/narrowing.html#using-type-predicates
 const isItem = (item: any): item is Item => {
-  return !!Object.values(item).length &&
-    typeof item.id === 'number' &&
-    typeof item.name === 'string';
-}
+  return !!Object.values(item).length && typeof item.id === 'number' && typeof item.name === 'string';
+};
 
 // draggable
 export const ItemCard: FC<ItemCardProps> = ({ id, name }): JSX.Element => {
@@ -74,12 +72,12 @@ export const ItemCard: FC<ItemCardProps> = ({ id, name }): JSX.Element => {
       tabIndex={0}
       className={classnames(styles.itemCard, {
         [styles.isDragging]: isDragging,
-      })
-    }>
+      })}
+    >
       {name}
     </div>
-  )
-}
+  );
+};
 
 const INITIAL_STOCK: ItemCardProps[] = [
   { id: 1, name: 'Item 1' },
@@ -96,11 +94,11 @@ export const Basket = (): JSX.Element => {
   const [{ isOver }, dropRef] = useDrop({
     accept: 'item',
     drop: (subject: Item) => {
-      const itemToMove = allItems.find(item => item.id === subject.id);
+      const itemToMove = allItems.find((item) => item.id === subject.id);
 
       if (isItem(itemToMove)) {
-        setBasket(prevState => ([ ...prevState, itemToMove ]));
-        setStock(prevState => prevState.filter(prev => prev.id !== subject.id));
+        setBasket((prevState) => [...prevState, itemToMove]);
+        setStock((prevState) => prevState.filter((prev) => prev.id !== subject.id));
       }
     },
     collect: (monitor) => ({
@@ -114,19 +112,26 @@ export const Basket = (): JSX.Element => {
       <p>A demo of an accessible drag and drop interface.</p>
 
       <h2>Stock</h2>
-      <p>Press <code>Tab</code> to focus an item, then press <code>Ctrl+d</code> to &lsquo;pickup&rsquo; the item. Use the cursor key to actually drag the item</p>
+      <p>
+        Press <code>Tab</code> to focus an item, then press <code>Ctrl+d</code> to &lsquo;pickup&rsquo; the item. Use the cursor key to
+        actually drag the item
+      </p>
       <div className={styles.stock}>
-        {stock.map((item) => <ItemCard draggable key={item.id} id={item.id} name={item.name} />)}
+        {stock.map((item) => (
+          <ItemCard draggable key={item.id} id={item.id} name={item.name} />
+        ))}
       </div>
 
       <h2>Basket</h2>
       <div className={styles.basket} ref={dropRef}>
-        {basket.map((item) => <ItemCard key={item.id} id={item.id} name={item.name} />)}
+        {basket.map((item) => (
+          <ItemCard key={item.id} id={item.id} name={item.name} />
+        ))}
         {isOver && <div>Drop Here!</div>}
       </div>
     </>
-  )
-}
+  );
+};
 
 export const DragAndDrop = (): JSX.Element => (
   <DndProvider options={DND_OPTIONS}>

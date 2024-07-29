@@ -1,4 +1,4 @@
-import { Menu, MenuItem } from '../../components/Menu/Menu';
+import { Menu, type MenuItem } from '../../components/Menu/Menu';
 import { Popover } from '../../components/Popover/Popover';
 
 const menu: MenuItem[] = [
@@ -19,7 +19,7 @@ const menu: MenuItem[] = [
 export const PopoverRoute = (): JSX.Element => (
   <>
     <Popover id="my-popover">
-      <Menu menu={menu}/>
+      <Menu menu={menu} />
     </Popover>
   </>
 );

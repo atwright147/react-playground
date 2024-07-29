@@ -1,10 +1,10 @@
 // taken from: https://github.com/skyra-project/star-wars-api/blob/main/src/utils/star-wars.d.ts
 
 export interface SwapiResponse<T> {
-    count: number,
-    next: string | null,
-    previous: string | null,
-    results: T,
+  count: number;
+  next: string | null;
+  previous: string | null;
+  results: T;
 }
 
 export interface Film {

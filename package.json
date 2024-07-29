@@ -11,7 +11,10 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "postinstall": "patch-package"
+    "postinstall": "patch-package",
+    "lint": "biome lint src",
+    "typecheck": "tsc --noEmit",
+    "check": "npm run lint && npm run typecheck"
   },
   "dependencies": {
     "@faker-js/faker": "^7.6.0",
@@ -40,6 +43,7 @@
     "zustand": "^4.3.6"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
     "@testing-library/user-event": "^14.4.3",

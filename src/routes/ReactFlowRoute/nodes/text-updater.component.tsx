@@ -1,6 +1,6 @@
-import { FC, useCallback, useState } from 'react';
-import { NodeProps, Position, useReactFlow } from 'reactflow';
-import { Data } from '../ReactFlowRoute';
+import { type FC, useCallback, useState } from 'react';
+import { type NodeProps, Position, useReactFlow } from 'reactflow';
+import type { Data } from '../ReactFlowRoute';
 import { CustomHandle } from './custom-handle.component';
 
 import styles from './node.module.scss';
@@ -20,47 +20,38 @@ export const TextUpdaterNode: FC<NodeProps<Data>> = (props): JSX.Element => {
             data: {
               ...node.data,
               value: evt.target.value,
-            }
-          }
+            },
+          };
         }
         return node;
-      })
+      }),
     );
   }, []);
 
   return (
     <>
       <div className={styles.node} style={{ minWidth: '200px' }}>
-        <header className={styles.header} style={{
-          backgroundColor: props.data.headerBackground,
-          color: props.data.headerForeground,
-        }}>
+        <header
+          className={styles.header}
+          style={{
+            backgroundColor: props.data.headerBackground,
+            color: props.data.headerForeground,
+          }}
+        >
           <h1 className={styles.heading}>{props.data.label}</h1>
         </header>
 
         <div className={styles.body}>
           <div className={styles.node}>
             <div className={styles.field}>
-              <input
-                aria-label={props.data.label}
-                name="text"
-                onChange={onChange}
-                value={value}
-                className="nodrag"
-              />
+              <input aria-label={props.data.label} name="text" onChange={onChange} value={value} className="nodrag" />
             </div>
           </div>
           <div className={styles.handles}>
-            <CustomHandle
-              label={props.data.label}
-              id={props.id}
-              type="source"
-              position={Position.Right}
-              valueType={props.data.valueType}
-            />
+            <CustomHandle label={props.data.label} id={props.id} type="source" position={Position.Right} valueType={props.data.valueType} />
           </div>
         </div>
       </div>
     </>
   );
-}
+};

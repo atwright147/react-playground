@@ -4,9 +4,7 @@ import { useSpinnerStore } from '../../stores/spinner.store';
 
 export const client = ky.create({
   hooks: {
-    beforeRequest: [
-      () => useSpinnerStore.getState().increment(),
-    ],
+    beforeRequest: [() => useSpinnerStore.getState().increment()],
     beforeError: [
       // @ts-ignore
       () => useSpinnerStore.getState().decrement(),
@@ -15,5 +13,5 @@ export const client = ky.create({
       // @ts-ignore
       () => useSpinnerStore.getState().decrement(),
     ],
-  }
+  },
 });
