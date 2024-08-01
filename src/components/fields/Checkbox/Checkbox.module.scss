@@ -37,7 +37,7 @@
     z-index: 1;
   }
 
-  .checkmark::after {
+  .input[data-indeterminate=false] ~ .checkmark::after {
     content: "";
     border: solid white;
     border-width: 0 3px 3px 0;
@@ -48,7 +48,24 @@
     transform: rotate(45deg);
   }
 
-  & .input:checked ~ .checkmark:after {
+  .input[data-indeterminate=true] ~ .checkmark {
+    background-color: #2196F3;
+  }
+
+  .input[data-indeterminate=true] ~ .checkmark::after {
+    content: "";
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: none;
+    margin-top: -.05em;
+    width: .5em;
+  }
+
+  & .input[data-indeterminate=true] ~ .checkmark:after {
+    display: block;
+  }
+
+  & .input[data-indeterminate=false]:checked ~ .checkmark:after {
     display: block;
   }
 }
