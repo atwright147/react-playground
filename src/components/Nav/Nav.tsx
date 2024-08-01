@@ -37,5 +37,8 @@ export const Nav = (): JSX.Element => (
     <NavLink className={styles.link} to="/components/popover">
       Popover
     </NavLink>
+    <NavLink className={styles.link} to="/components/checkbox-tree">
+      CheckboxTree
+    </NavLink>
   </nav>
 );

@@ -1,21 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import 'normalize.css';
 
-import { Root } from './routes/Root/Root';
-import { ErrorPage } from './routes/Error/Error';
-import { Products } from './routes/Products/Products';
-import { Home } from './routes/Home/Home';
-import { DragAndDrop } from './routes/DragAndDrop/DragAndDrop';
 import { AccordionRoute } from './routes/AccordionRoute/AccordionRoute';
 import { ButtonsRoute } from './routes/ButtonsRoute/ButtonsRoute';
+import { CheckboxTreeRoute } from './routes/CheckboxTree/CheckboxTreeRoute';
+import { DragAndDrop } from './routes/DragAndDrop/DragAndDrop';
+import { ErrorPage } from './routes/Error/Error';
 import { FieldsRoute } from './routes/FieldsRoute/FieldsRoute';
-import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
 import { FormRoute } from './routes/FormRoute/FormRoute';
-import { TodosRoute } from './routes/Todos/TotosRoute';
-import { StarWarsRoute } from './routes/StarWarsRoute/StarWarsRoute';
+import { Home } from './routes/Home/Home';
+import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
+import { Products } from './routes/Products/Products';
 import { ReactFlowRoute } from './routes/ReactFlowRoute/ReactFlowRoute';
+import { Root } from './routes/Root/Root';
+import { StarWarsRoute } from './routes/StarWarsRoute/StarWarsRoute';
+import { TodosRoute } from './routes/Todos/TotosRoute';
 
 import './index.scss';
 
@@ -68,6 +69,10 @@ const router = createBrowserRouter([
       {
         path: 'components/popover',
         element: <PopoverRoute />,
+      },
+      {
+        path: 'components/checkbox-tree',
+        element: <CheckboxTreeRoute />,
       },
     ],
   },
