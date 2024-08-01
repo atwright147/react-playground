@@ -25,6 +25,10 @@ export const CheckboxTree: FC<Props> = ({ items }): JSX.Element => {
   }));
   const [parentCheckedState, setParentCheckedState] = useState<Record<Uuid, boolean>>({});
 
+  const isParentChecked = (parentId: Uuid): boolean => {
+    return parentCheckedState[parentId] || false;
+  };
+
   const handleParentChange = (event: React.ChangeEvent<HTMLInputElement>, parentId: Uuid): void => {
     const children = items.find((item) => item.id === parentId)?.children;
 
@@ -75,6 +79,7 @@ export const CheckboxTree: FC<Props> = ({ items }): JSX.Element => {
   return (
     <>
       <pre>{JSON.stringify(selected.length)}</pre>
+      <pre>{JSON.stringify(parentCheckedState)}</pre>
 
       <div className={styles.box}>
         {items.map((item) => (
@@ -84,7 +89,7 @@ export const CheckboxTree: FC<Props> = ({ items }): JSX.Element => {
                 label={item.name}
                 name={item.name}
                 id={item.id}
-                checked={hasAllChildrenChecked(item.id)}
+                checked={hasAllChildrenChecked(item.id) || isParentChecked(item.id)}
                 onChange={(event) => handleParentChange(event, item.id)}
                 indeterminate={isIndeterminate(item.id)}
               />
