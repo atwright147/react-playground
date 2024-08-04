@@ -1,5 +1,7 @@
 import { type FC, useState } from 'react';
 
+import classNames from 'classnames';
+import { Virtuoso } from 'react-virtuoso';
 import { useCheckboxTreeStore } from '../../stores/checkboxtree.store';
 import type { Uuid } from '../../types/uuid.type';
 import { Checkbox } from '../fields/Checkbox/Checkbox';
@@ -76,43 +78,45 @@ export const CheckboxTree: FC<Props> = ({ items }): JSX.Element => {
     }
   };
 
+  const renderItems = (item: Item): JSX.Element => {
+    return (
+      <>
+        <div key={item.id} className={classNames(styles.parent, styles.field)}>
+          <Checkbox
+            label={item.name}
+            name={item.name}
+            id={item.id}
+            checked={hasAllChildrenChecked(item.id) || isParentChecked(item.id)}
+            onChange={(event) => handleParentChange(event, item.id)}
+            indeterminate={isIndeterminate(item.id)}
+          />
+          <label htmlFor={item.id}>{item.name}</label>
+        </div>
+
+        {item.children?.map((child) => (
+          <div key={child.id} className={classNames(styles.child, styles.field)}>
+            <Checkbox
+              label={child.name}
+              name={child.name}
+              id={child.id}
+              checked={isSelected(child.id)}
+              onChange={(event) => handleChildChange(event, child.id)}
+            />
+            <label htmlFor={child.id}>{child.name}</label>
+          </div>
+        ))}
+      </>
+    );
+  };
+
   return (
     <>
       <pre>{JSON.stringify(selected.length)}</pre>
       <pre>{JSON.stringify(parentCheckedState)}</pre>
 
-      <div className={styles.box}>
-        {items.map((item) => (
-          <div key={item.id} className={styles.group}>
-            <div className={styles.field}>
-              <Checkbox
-                label={item.name}
-                name={item.name}
-                id={item.id}
-                checked={hasAllChildrenChecked(item.id) || isParentChecked(item.id)}
-                onChange={(event) => handleParentChange(event, item.id)}
-                indeterminate={isIndeterminate(item.id)}
-              />
-              <label htmlFor={item.id}>{item.name}</label>
-            </div>
+      <Virtuoso style={{ height: 900, outline: '1px solid red' }} data={items} itemContent={(_, item) => renderItems(item)} />
 
-            <div className={styles.children}>
-              {item.children?.map((child) => (
-                <div key={child.id} className={styles.field}>
-                  <Checkbox
-                    label={child.name}
-                    name={child.name}
-                    id={child.id}
-                    checked={isSelected(child.id)}
-                    onChange={(event) => handleChildChange(event, child.id)}
-                  />
-                  <label htmlFor={child.id}>{child.name}</label>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* {items.map((item) => renderItems(item))} */}
     </>
   );
 };
