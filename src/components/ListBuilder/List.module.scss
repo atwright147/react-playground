@@ -1,0 +1,15 @@
+.list {
+  list-style: none;
+  padding: 5px;
+  margin: 0;
+  border: 2px solid #888;
+  min-width: 200px;
+}
+
+.label {
+  padding: 5px 10px;
+}
+
+input:checked + .label {
+  background-color: green !important;
+}

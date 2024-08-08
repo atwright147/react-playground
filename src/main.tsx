@@ -11,6 +11,7 @@ import { ErrorPage } from './routes/Error/Error';
 import { FieldsRoute } from './routes/FieldsRoute/FieldsRoute';
 import { FormRoute } from './routes/FormRoute/FormRoute';
 import { Home } from './routes/Home/Home';
+import { ListBuilderRoute } from './routes/ListBuilderRoute/ListBuilderRoute';
 import { PopoverRoute } from './routes/PopoverRoute/PopoverRoute';
 import { Products } from './routes/Products/Products';
 import { ReactFlowRoute } from './routes/ReactFlowRoute/ReactFlowRoute';
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
       {
         path: 'components/checkbox-tree',
         element: <CheckboxTreeRoute />,
+      },
+      {
+        path: 'components/list-builder',
+        element: <ListBuilderRoute />,
       },
     ],
   },

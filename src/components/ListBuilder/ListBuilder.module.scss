@@ -1,0 +1,19 @@
+.listBuilder {
+  display: flex;
+  gap: 20px;
+}
+
+.listWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}

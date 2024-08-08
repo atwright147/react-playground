@@ -40,5 +40,8 @@ export const Nav = (): JSX.Element => (
     <NavLink className={styles.link} to="/components/checkbox-tree">
       CheckboxTree
     </NavLink>
+    <NavLink className={styles.link} to="/components/list-builder">
+      ListBuilder
+    </NavLink>
   </nav>
 );
