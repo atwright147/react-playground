@@ -1,47 +1,23 @@
 import { NavLink } from 'react-router-dom';
 
+import { type NamedRouteObject, routes } from '../../routes';
+
 import styles from './Nav.module.scss';
 
 export const Nav = (): JSX.Element => (
   <nav className={styles.nav} aria-label="Primary">
     <h2>Routes</h2>
-    <NavLink className={styles.link} to="/">
-      Home
-    </NavLink>
-    <NavLink className={styles.link} to="/drag-and-drop">
-      Drag and Drop
-    </NavLink>
-    <NavLink className={styles.link} to="/todos">
-      Todos
-    </NavLink>
-    <NavLink className={styles.link} to="/starwars">
-      Star Wars
-    </NavLink>
-    <NavLink className={styles.link} to="/reactflow">
-      React Flow
-    </NavLink>
-    <hr className={styles.hr} />
-    <h2>Components</h2>
-    <NavLink className={styles.link} to="/components/accordion">
-      Accordion
-    </NavLink>
-    <NavLink className={styles.link} to="/components/button">
-      Button
-    </NavLink>
-    <NavLink className={styles.link} to="/components/fields">
-      Fields
-    </NavLink>
-    <NavLink className={styles.link} to="/components/form">
-      Form
-    </NavLink>
-    <NavLink className={styles.link} to="/components/popover">
-      Popover
-    </NavLink>
-    <NavLink className={styles.link} to="/components/checkbox-tree">
-      CheckboxTree
-    </NavLink>
-    <NavLink className={styles.link} to="/components/list-builder">
-      ListBuilder
-    </NavLink>
+    {routes.map((route) => (
+      <>
+        <NavLink key={route.path} className={styles.link} to={route.path}>
+          {route.name}
+        </NavLink>
+        {(route.children as NamedRouteObject[])?.map((child) => (
+          <NavLink key={child.path} className={styles.link} to={child.path}>
+            {child.name}
+          </NavLink>
+        ))}
+      </>
+    ))}
   </nav>
 );
