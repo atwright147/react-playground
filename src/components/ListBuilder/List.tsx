@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import { type FC, useState } from 'react';
 import type { Item } from './ListBuilder';
 
 import { useListBuilderStore } from '../../stores/list-builder.store';
@@ -10,42 +10,62 @@ interface Props {
 }
 
 export const List: FC<Props> = ({ items, type }): JSX.Element => {
-  const { setAvailableChecked, removeAvailableChecked, setSelectedChecked, removeSelectedChecked } = useListBuilderStore((store) => ({
-    setAvailableChecked: store.setAvailableChecked,
-    removeAvailableChecked: store.removeAvailableChecked,
-    setSelectedChecked: store.setSelectedChecked,
-    removeSelectedChecked: store.removeSelectedChecked,
-  }));
+  const [lastChecked, setLastChecked] = useState<number>();
+  const { setAvailableChecked, removeAvailableChecked, setSelectedChecked, removeSelectedChecked, isChecked } = useListBuilderStore(
+    (store) => ({
+      setAvailableChecked: store.setAvailableChecked,
+      removeAvailableChecked: store.removeAvailableChecked,
+      setSelectedChecked: store.setSelectedChecked,
+      removeSelectedChecked: store.removeSelectedChecked,
+      isChecked: store.isChecked,
+    }),
+  );
 
-  const handleChangeAvailable = (event: React.ChangeEvent<HTMLInputElement>, item: Item): void => {
-    if (event.target.checked) {
-      setAvailableChecked([item]);
+  const handleChangeAvailable = (checked: boolean, items: Item[], index: number): void => {
+    if (checked) {
+      setAvailableChecked(items);
     } else {
-      removeAvailableChecked([item]);
+      removeAvailableChecked(items);
     }
   };
 
-  const handleChangeSelected = (event: React.ChangeEvent<HTMLInputElement>, item: Item): void => {
-    if (event.target.checked) {
-      setSelectedChecked([item]);
+  const handleChangeSelected = (checked: boolean, items: Item[], index: number): void => {
+    if (checked) {
+      setSelectedChecked(items);
     } else {
-      removeSelectedChecked([item]);
+      removeSelectedChecked(items);
     }
   };
 
-  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, item: Item): void => {
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>, item: Item, index: number): void => {
+    const checkedItems: Item[] = [];
+
+    if ((event.nativeEvent as PointerEvent).shiftKey && lastChecked !== undefined) {
+      const start = Math.min(lastChecked, index);
+      const end = Math.max(lastChecked, index);
+      for (let i = start; i <= end; i++) {
+        checkedItems.push(items[i]);
+      }
+    } else {
+      checkedItems.push(item);
+    }
+
+    console.info(checkedItems);
+
     if (type === 'available') {
-      handleChangeAvailable(event, item);
+      handleChangeAvailable(event.target.checked, checkedItems, index);
     } else {
-      handleChangeSelected(event, item);
+      handleChangeSelected(event.target.checked, checkedItems, index);
     }
+
+    setLastChecked(index);
   };
 
   return (
     <ul className={styles.list}>
-      {items.map((item) => (
+      {items.map((item, index) => (
         <li key={item.id} className={styles.listItem}>
-          <input type="checkbox" id={item.id} onChange={(event) => handleChange(event, item)} hidden />
+          <input type="checkbox" id={item.id} onChange={(event) => handleChange(event, item, index)} checked={isChecked(item.id)} hidden />
           <label htmlFor={item.id} className={styles.label}>
             {item.name}
           </label>

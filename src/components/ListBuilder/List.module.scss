@@ -7,6 +7,10 @@
   flex-grow: 1;
 }
 
+.listItem {
+  user-select: none;
+}
+
 .label {
   padding: 5px 10px;
 }
