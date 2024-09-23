@@ -24,6 +24,7 @@ export type NamedRouteObject = RouteObject & {
 
 export const routes: NamedRouteObject[] = [
   {
+    name: 'Root',
     path: '/',
     element: <Root />,
     errorElement: <ErrorPage />,

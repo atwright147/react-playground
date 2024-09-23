@@ -9,11 +9,11 @@ export const Nav = (): JSX.Element => (
     <h2>Routes</h2>
     {routes.map((route) => (
       <>
-        <NavLink key={route.path} className={styles.link} to={route.path}>
+        <NavLink key={route.name} className={styles.link} to={route.path}>
           {route.name}
         </NavLink>
         {(route.children as NamedRouteObject[])?.map((child) => (
-          <NavLink key={child.path} className={styles.link} to={child.path}>
+          <NavLink key={child.name} className={styles.link} to={child.path}>
             {child.name}
           </NavLink>
         ))}
